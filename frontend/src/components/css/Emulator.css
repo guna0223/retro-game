@@ -1,0 +1,41 @@
+/* Emulator.css */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.emulator-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.emulator-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: #000;
+  border: 4px solid #333;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.emulator-game {
+  width: 100%;
+  height: 100%;
+}
+
+.emulator-game canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.controls-info {
+  text-align: center;
+  color: #888;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.6rem;
+  line-height: 2;
+}
+
+.controls-info p {
+  margin: 5px 0;
+}
