@@ -14,10 +14,61 @@ const CONTROLS = [
   { keys: ["Shift"], action: "Select" }
 ];
 
+// Touch control mappings
+const TOUCH_CONTROLS = [
+  { key: "ArrowUp", label: "↑" },
+  { key: "ArrowDown", label: "↓" },
+  { key: "ArrowLeft", label: "←" },
+  { key: "ArrowRight", label: "→" },
+  { key: "z", label: "A" },
+  { key: "x", label: "B" },
+  { key: "Enter", label: "START" },
+  { key: "Shift", label: "SELECT" }
+];
+
 function Emulator() {
   const [selectedGame, setSelectedGame] = useState(null);
   const [gameStarted, setGameStarted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [showRotationMessage, setShowRotationMessage] = useState(false);
+
+  // Check if device is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+      setIsMobile(mobile);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Send key event to emulator
+  const sendKeyToEmulator = useCallback((key, isKeyDown = true) => {
+    if (window.EJS && window.EJS.emulator) {
+      try {
+        const event = new KeyboardEvent(isKeyDown ? 'keydown' : 'keyup', { key });
+        if (isKeyDown) {
+          window.EJS.emulator.keyboard.keydown(event);
+        } else {
+          window.EJS.emulator.keyboard.keyup(event);
+        }
+      } catch (err) {
+        console.log('Key error:', err);
+      }
+    }
+  }, []);
+
+  // Handle touch control press
+  const handleTouchStart = useCallback((key) => {
+    sendKeyToEmulator(key, true);
+  }, [sendKeyToEmulator]);
+
+  // Handle touch control release
+  const handleTouchEnd = useCallback((key) => {
+    sendKeyToEmulator(key, false);
+  }, [sendKeyToEmulator]);
 
   // Keyboard controls handler
   useEffect(() => {
@@ -72,6 +123,15 @@ function Emulator() {
     setGameStarted(true);
     setIsLoading(true);
 
+    // Request landscape orientation on mobile
+    if (isMobile && screen.orientation && screen.orientation.lock) {
+      screen.orientation.lock("landscape").catch(() => {
+        // Show rotation message if lock fails
+        setShowRotationMessage(true);
+        setTimeout(() => setShowRotationMessage(false), 4000);
+      });
+    }
+
     // Get the correct emulator core for the game
     const emulatorCore = selectedGame.system || "snes";
 
@@ -118,10 +178,15 @@ function Emulator() {
     };
 
     document.body.appendChild(script);
-  }, [selectedGame]);
+  }, [selectedGame, isMobile]);
 
   // Go back to game selection - stop game and sound
   const goBack = useCallback(() => {
+    // Exit landscape orientation
+    if (screen.orientation && screen.orientation.unlock) {
+      screen.orientation.unlock().catch(() => {});
+    }
+
     // Find and remove all audio elements created by the emulator
     const allAudio = document.querySelectorAll('audio');
     allAudio.forEach(audio => {
@@ -223,6 +288,14 @@ function Emulator() {
         <i className="fas fa-arrow-left"></i> Back to Games
       </button>
 
+      {/* Rotation message for mobile */}
+      {showRotationMessage && (
+        <div className="rotation-message">
+          <i className="fas fa-mobile-alt"></i>
+          <p>Please rotate your device to landscape mode for the best gaming experience</p>
+        </div>
+      )}
+
       <div className="emulator-area">
         <div className="emulator-screen">
           {/* Game Preview - shown before starting */}
@@ -258,21 +331,77 @@ function Emulator() {
         </div>
       </div>
 
-      <div className="controls-panel">
-        <h3 className="controls-title"><i className="fas fa-gamepad"></i> CONTROLS</h3>
-        <div className="controls-grid">
-          {CONTROLS.map((control, i) => (
-            <div key={i} className="control-row">
-              <div className="control-keys">
-                {control.keys.map((key, j) => (
-                  <kbd key={j}>{key}</kbd>
-                ))}
-              </div>
-              <span className="control-action">{control.action}</span>
-            </div>
-          ))}
+      {/* Mobile Touch Controls */}
+      {gameStarted && isMobile && (
+        <div className="mobile-controls">
+          {/* D-Pad */}
+          <div className="dpad-container">
+            <button 
+              className="control-btn dpad-btn up"
+              onTouchStart={() => handleTouchStart("ArrowUp")}
+              onTouchEnd={() => handleTouchEnd("ArrowUp")}
+            >↑</button>
+            <button 
+              className="control-btn dpad-btn left"
+              onTouchStart={() => handleTouchStart("ArrowLeft")}
+              onTouchEnd={() => handleTouchEnd("ArrowLeft")}
+            >←</button>
+            <button 
+              className="control-btn dpad-btn right"
+              onTouchStart={() => handleTouchStart("ArrowRight")}
+              onTouchEnd={() => handleTouchEnd("ArrowRight")}
+            >→</button>
+            <button 
+              className="control-btn dpad-btn down"
+              onTouchStart={() => handleTouchStart("ArrowDown")}
+              onTouchEnd={() => handleTouchEnd("ArrowDown")}
+            >↓</button>
+          </div>
+          
+          {/* Action Buttons */}
+          <div className="action-buttons">
+            <button 
+              className="control-btn action-btn b-btn"
+              onTouchStart={() => handleTouchStart("x")}
+              onTouchEnd={() => handleTouchEnd("x")}
+            >B</button>
+            <button 
+              className="control-btn action-btn a-btn"
+              onTouchStart={() => handleTouchStart("z")}
+              onTouchEnd={() => handleTouchEnd("z")}
+            >A</button>
+            <button 
+              className="control-btn action-btn select-btn"
+              onTouchStart={() => handleTouchStart("Shift")}
+              onTouchEnd={() => handleTouchEnd("Shift")}
+            >SELECT</button>
+            <button 
+              className="control-btn action-btn start-btn-mobile"
+              onTouchStart={() => handleTouchStart("Enter")}
+              onTouchEnd={() => handleTouchEnd("Enter")}
+            >START</button>
+          </div>
         </div>
-      </div>
+      )}
+
+      {/* Desktop Keyboard Controls Guide - hide on mobile */}
+      {!isMobile && (
+        <div className="controls-panel">
+          <h3 className="controls-title"><i className="fas fa-gamepad"></i> CONTROLS</h3>
+          <div className="controls-grid">
+            {CONTROLS.map((control, i) => (
+              <div key={i} className="control-row">
+                <div className="control-keys">
+                  {control.keys.map((key, j) => (
+                    <kbd key={j}>{key}</kbd>
+                  ))}
+                </div>
+                <span className="control-action">{control.action}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
