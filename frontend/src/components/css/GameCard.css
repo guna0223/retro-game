@@ -77,12 +77,12 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.4s ease, background 0.4s ease;
 }
 
 .game-card:hover .card-overlay {
@@ -91,7 +91,7 @@
 
 .play-text {
   font-family: 'VT323', monospace;
-  font-size: 2rem;
+  font-size: 2.2rem;
   color: #00ff00;
   text-transform: uppercase;
   letter-spacing: 4px;
@@ -99,15 +99,28 @@
   border: 3px solid #00ff00;
   border-radius: 8px;
   background: rgba(0, 0, 0, 0.7);
+  transform: scale(0.8);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
 }
 
 .game-card:hover .play-text {
-  animation: pulse 1s infinite;
+  opacity: 1;
+  transform: scale(1);
+  animation: glowPulse 1.5s ease-in-out infinite;
+  box-shadow: 0 0 30px rgba(0, 255, 0, 0.6), 0 0 60px rgba(0, 255, 0, 0.3);
 }
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+@keyframes glowPulse {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5), 0 0 40px rgba(0, 255, 0, 0.2);
+    border-color: #00ff00;
+  }
+  50% { 
+    box-shadow: 0 0 35px rgba(0, 255, 0, 0.7), 0 0 70px rgba(0, 255, 0, 0.4);
+    border-color: #88ff88;
+  }
 }
 
 /* Card Info */

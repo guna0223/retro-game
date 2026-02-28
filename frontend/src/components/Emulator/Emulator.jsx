@@ -6,32 +6,52 @@ import "../css/Emulator.css";
 // Game library
 const GAMES = [
   {
-    id: "mario",
+    id: "1",
     name: "Super Mario World",
     file: "Super Mario World.smc",
     color: "#e74c3c",
-    image: "mario.jpg"
+    image: "mario.jpg",
+    system: "snes"
   },
   {
-    id: "donkey-kong",
+    id: "2",
     name: "Donkey Kong Country",
     file: "Donkey Kong Country (U) (V1.2) [!].smc",
     color: "#f39c12",
-    image: "monkey.jpg"
+    image: "monkey.jpg",
+    system: "snes"
   },
   {
-    id: "top-gear",
+    id: "3",
     name: "Top Gear",
     file: "Top Gear (USA).sfc",
     color: "#3498db",
-    image : "topgear.jpeg"
+    image: "topgear.jpeg",
+    system: "snes"
   },
   {
-    id: "street-fighter-2",
+    id: "4",
     name: "Street Fighter Two",
     file: "Street Fighter Two .smc",
     color: "#e74c3c",
-    image: null
+    image: "Street Fighter Two.jpg",
+    system: "snes"
+  },
+  {
+    id: "5",
+    name: "Spider-Man",
+    file: "Spider-Man.sfc",
+    color: "#e74c3c",
+    image: "Street Fighter Two",
+    system: "snes"
+  }, 
+  {
+    id: "6",
+    name: "Spider-Man-2",
+    file: "Spiderman2.gba",
+    color: "#e74c3c",
+    image: "Street Fighter Two",
+    system: "gba"
   },
 ];
 
@@ -58,13 +78,16 @@ function Emulator() {
   // Start the game
   const startGame = useCallback(() => {
     if (!selectedGame) return;
-    
+
     setGameStarted(true);
     setIsLoading(true);
 
+    // Get the correct emulator core for the game
+    const emulatorCore = selectedGame.system || "snes";
+
     // Configure EmulatorJS
     window.EJS_player = "#game";
-    window.EJS_core = "snes";
+    window.EJS_core = emulatorCore;
     window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
     window.EJS_gameUrl = `/games/${selectedGame.file}`;
 
@@ -97,14 +120,31 @@ function Emulator() {
     document.body.appendChild(script);
   }, [selectedGame]);
 
-  // Go back to game selection
+  // Go back to game selection - stop game and sound
   const goBack = useCallback(() => {
-    setSelectedGame(null);
-    setGameStarted(false);
+    // Try to stop the emulator if it exists
+    if (window.EJS && window.EJS.stop) {
+      try {
+        window.EJS.stop();
+      } catch (e) {
+        console.log("Emulator stop error:", e);
+      }
+    }
+    
+    // Clear the game container
     const gameDiv = document.getElementById("game");
     if (gameDiv) {
       gameDiv.innerHTML = "";
     }
+    
+    // Remove the emulator script to fully stop
+    const existingScript = document.querySelector('script[data-ejs]');
+    if (existingScript) {
+      existingScript.remove();
+    }
+    
+    setSelectedGame(null);
+    setGameStarted(false);
   }, []);
 
   // Show game selection grid
@@ -112,16 +152,16 @@ function Emulator() {
     return (
       <div className="arcade-container">
         <div className="arcade-bg"></div>
-        
+
         <div className="game-library">
           <h2 className="library-title">RETRO ARCADE</h2>
-          
+
           <div className="games-grid">
             {GAMES.map((game) => (
-              <GameCard 
-                key={game.id} 
-                game={game} 
-                onPlay={selectGame} 
+              <GameCard
+                key={game.id}
+                game={game}
+                onPlay={selectGame}
               />
             ))}
           </div>
@@ -134,7 +174,7 @@ function Emulator() {
   return (
     <div className="arcade-container">
       <div className="arcade-bg"></div>
-      
+
       <button className="back-btn" onClick={goBack}>
         ← Back to Games
       </button>
@@ -145,8 +185,8 @@ function Emulator() {
           {!gameStarted && (
             <div className="game-preview">
               {selectedGame.image ? (
-                <img 
-                  src={`/game-image/${selectedGame.image}`} 
+                <img
+                  src={`/game-image/${selectedGame.image}`}
                   alt={selectedGame.name}
                   className="preview-image"
                 />
@@ -160,7 +200,7 @@ function Emulator() {
               </button>
             </div>
           )}
-          
+
           {/* Loading */}
           {isLoading && (
             <div className="loading-overlay">
@@ -168,7 +208,7 @@ function Emulator() {
               <p>Loading {selectedGame.name}...</p>
             </div>
           )}
-          
+
           {/* Emulator */}
           <div id="game" className="emulator-game"></div>
         </div>
