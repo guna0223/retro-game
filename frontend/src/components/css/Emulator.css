@@ -1,26 +1,26 @@
-/* Emulator.css - Modern Retro Arcade UI */
+/* Emulator.css - Retro Arcade UI */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
 
 :root {
-  --primary: #9b59b6;
-  --primary-glow: rgba(155, 89, 182, 0.6);
-  --neon-cyan: #00ffff;
-  --neon-pink: #ff00ff;
-  --neon-green: #00ff00;
-  --dark-bg: #0a0a12;
-  --card-bg: #12121a;
-  --text: #ffffff;
+  --primary: #7C3AED;
+  --primary-glow: rgba(124, 58, 237, 0.6);
+  --neon-cyan: #00E5FF;
+  --neon-pink: #FF00FF;
+  --neon-green: #22C55E;
+  --dark-bg: #0B0F1A;
+  --card-bg: #141A2E;
+  --text: #FFFFFF;
   --text-dim: #888899;
 }
 
 .arcade-container {
-  max-width: 700px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 20px;
+  padding: 0;
   position: relative;
 }
 
-/* Animated arcade background */
+/* Background */
 .arcade-bg {
   position: fixed;
   top: 0;
@@ -31,94 +31,96 @@
   z-index: -1;
 }
 
-.arcade-bg::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
-    linear-gradient(rgba(155, 89, 182, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(155, 89, 182, 0.03) 1px, transparent 1px);
-  background-size: 50px 50px;
-}
-
 /* Game Library */
 .game-library {
   text-align: center;
-  margin-bottom: 30px;
+  padding: 40px 20px;
+  background: #0B0F1A;
+  min-height: 100vh;
 }
 
 .library-title {
   font-family: 'Press Start 2P', cursive;
-  font-size: 1.5rem;
-  color: var(--text);
-  text-shadow: 0 0 10px var(--neon-pink),
-0 10px var(--neon-pink),
-    0 0 20px var(--neon-pink),
-    0 0 40px var(--neon-pink);
+  font-size: 1.8rem;
+  color: #FFD700;
+  text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
   margin-bottom: 30px;
-  letter-spacing: 4px;
-  animation: titleGlow 2s ease-in-out infinite;
+  letter-spacing: 6px;
 }
 
-@keyframes titleGlow {
-  0%, 100% { 
-    text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink);
-  }
-  50% { 
-    text-shadow: 0 0 15px var(--neon-cyan), 0 0 30px var(--neon-cyan), 0 0 60px var(--neon-cyan);
-  }
+/* Category Filters */
+.category-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 40px;
+  padding: 0 20px;
+}
+
+.category-btn {
+  background: transparent;
+  border: 2px solid #7C3AED;
+  border-radius: 25px;
+  padding: 10px 24px;
+  color: #FFFFFF;
+  font-family: 'VT323', monospace;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.category-btn:hover {
+  background: rgba(124, 58, 237, 0.2);
+  border-color: #00E5FF;
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+}
+
+.category-btn.active {
+  background: #7C3AED;
+  border-color: #7C3AED;
+  color: #FFFFFF;
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
 }
 
 /* Back Button */
 .back-btn {
   display: block;
-  margin: 0 auto 20px;
-  background: #444;
+  margin: 20px auto;
+  background: #7C3AED;
   border: none;
-  border-radius: 6px;
-  padding: 10px 20px;
+  border-radius: 8px;
+  padding: 12px 28px;
   color: #fff;
   font-family: 'VT323', monospace;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
 }
 
 .back-btn:hover {
-  background: #555;
+  background: #9F67FF;
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
+  transform: translateY(-2px);
 }
 
 /* Emulator Area */
 .emulator-area {
   display: flex;
   justify-content: center;
-  margin-bottom: 25px;
+  margin: 20px 0;
 }
 
 .emulator-screen {
   position: relative;
   width: 100%;
-  max-width: 640px;
+  max-width: 800px;
   aspect-ratio: 4/3;
-  border-radius: 12px;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-  border: 3px solid #333;
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.3);
+  border: 3px solid #7C3AED;
   background: #000;
-}
-
-@keyframes neonBorder {
-  0%, 100% { 
-    border-color: var(--primary);
-    box-shadow: 0 0 30px rgba(155, 89, 182, 0.4), 0 0 60px rgba(155, 89, 182, 0.2);
-  }
-  50% { 
-    border-color: var(--neon-cyan);
-    box-shadow: 0 0 30px rgba(0, 255, 255, 0.4), 0 0 60px rgba(0, 255, 255, 0.2);
-  }
 }
 
 .emulator-game {
@@ -143,7 +145,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #000;
+  background: #0B0F1A;
   z-index: 10;
 }
 
@@ -156,13 +158,13 @@
 .preview-placeholder {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #1a1a2e 0%, #0a0a15 100%);
+  background: linear-gradient(135deg, #141A2E 0%, #0B0F1A 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'Press Start 2P', cursive;
   font-size: 0.8rem;
-  color: var(--text-dim);
+  color: #888;
 }
 
 .start-btn {
@@ -170,21 +172,22 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #00aa00;
+  background: #22C55E;
   border: none;
-  border-radius: 8px;
-  padding: 15px 40px;
+  border-radius: 50px;
+  padding: 18px 50px;
   color: #fff;
   font-family: 'VT323', monospace;
   font-size: 1.5rem;
   cursor: pointer;
-  transition: all 0.2s;
-  box-shadow: 0 4px 0 #007700;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 0 #16A34A, 0 0 20px rgba(34, 197, 94, 0.4);
 }
 
 .start-btn:hover {
-  background: #00cc00;
+  background: #16A34A;
   transform: translate(-50%, -50%) scale(1.05);
+  box-shadow: 0 6px 0 #16A34A, 0 0 30px rgba(34, 197, 94, 0.6);
 }
 
 /* Loading */
@@ -198,15 +201,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(11, 15, 26, 0.95);
   z-index: 100;
 }
 
 .loading-spinner {
-  width: 40px;
-  height: 40px;
-  border: 3px solid #333;
-  border-top-color: #666;
+  width: 50px;
+  height: 50px;
+  border: 4px solid #333;
+  border-top-color: #7C3AED;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -217,39 +220,41 @@
 
 .loading-overlay p {
   font-family: 'VT323', monospace;
-  font-size: 1.2rem;
-  color: #888;
-  margin-top: 15px;
+  font-size: 1.3rem;
+  color: #FFD700;
+  margin-top: 20px;
 }
 
 /* Controls Panel */
 .controls-panel {
-  background: #1a1a24;
-  border: 2px solid #333;
-  border-radius: 12px;
-  padding: 20px;
-  margin-top: 20px;
+  background: #141A2E;
+  border: 2px solid #7C3AED;
+  border-radius: 16px;
+  padding: 25px;
+  margin: 20px auto;
+  max-width: 800px;
 }
 
 .controls-title {
   font-family: 'Press Start 2P', cursive;
   font-size: 0.7rem;
-  color: #aaa;
+  color: #00E5FF;
   text-align: center;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px #00E5FF;
 }
 
 .controls-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
+  gap: 20px;
 }
 
 .control-row {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .control-keys {
@@ -259,44 +264,53 @@
 
 .control-keys kbd {
   display: inline-block;
-  background: #2a2a3a;
-  border: 1px solid #444;
-  border-radius: 4px;
-  padding: 6px 10px;
+  background: #0B0F1A;
+  border: 2px solid #7C3AED;
+  border-radius: 6px;
+  padding: 8px 14px;
   font-family: 'VT323', monospace;
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: #fff;
+  box-shadow: 0 3px 0 #7C3AED;
 }
 
 .control-action {
   font-family: 'VT323', monospace;
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: #888;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .games-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    padding: 10px;
+  .emulator-screen {
+    max-width: 95%;
+    border-radius: 12px;
   }
   
-  .game-card {
-    padding: 15px;
-  }
-  
-  .card-image {
-    width: 70px;
-    height: 70px;
-  }
-  
-  .library-title {
-    font-size: 1rem;
+  .controls-panel {
+    max-width: 95%;
+    padding: 20px;
   }
   
   .control-row {
     width: 100%;
     justify-content: center;
+  }
+  
+  .back-btn {
+    margin: 15px auto;
+    padding: 10px 24px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .start-btn {
+    padding: 14px 36px;
+    font-size: 1.2rem;
+  }
+  
+  .controls-title {
+    font-size: 0.6rem;
   }
 }

@@ -1,10 +1,10 @@
 /* GameCard.css - Modern Retro Game Cards */
-@import url('https://fonts.googleapis.com/css2?family=Press+Start 2P&family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
 
 /* Game Library */
 .game-library {
   text-align: center;
-  padding: 20px 0;
+  padding: 40px 20px;
   background: #0B0F1A;
   min-height: 100vh;
 }
@@ -14,37 +14,54 @@
   font-size: 1.8rem;
   color: #FFD700;
   text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   letter-spacing: 6px;
 }
 
 /* Games Grid - 4 columns */
 .games-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 25px;
-  padding: 20px;
-  max-width: 1400px;
+  grid-template-columns: repeat(4, 320px);
+  gap: 30px;
+  padding: 30px;
+  max-width: 1500px;
   margin: 0 auto;
+  justify-content: center;
+}
+
+/* Big screens - 4 cards per row */
+@media (min-width: 1600px) {
+  .games-grid {
+    grid-template-columns: repeat(4, 320px);
+    max-width: 1700px;
+    gap: 35px;
+  }
+}
+
+@media (min-width: 2000px) {
+  .games-grid {
+    grid-template-columns: repeat(4, 320px);
+    max-width: 2000px;
+    gap: 40px;
+  }
 }
 
 /* Game Card */
 .game-card {
-  position: relative;
+  width: 320px;
+  height: 420px;
   background: #141A2E;
   border: 2px solid #7C3AED;
-  border-radius: 14px;
-  padding: 0;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: 0.3s;
+  cursor: pointer;
+  position: relative;
 }
 
 .game-card:hover {
-  transform: translateY(-6px);
-  border-color: #00E5FF;
-  box-shadow: 0 0 25px #00E5FF, 0 10px 30px rgba(0, 229, 255, 0.2);
+  transform: translateY(-8px);
+  box-shadow: 0 0 25px #00E5FF;
 }
 
 /* Card Image */
@@ -57,9 +74,9 @@
 
 .card-image img {
   width: 100%;
-  height: 100%;
+  height: 280px;
   object-fit: cover;
-  transition: transform 0.4s ease;
+  transition: transform 0.3s ease;
 }
 
 .game-card:hover .card-image img {
@@ -69,7 +86,7 @@
 /* No Image Placeholder */
 .no-image {
   width: 100%;
-  height: 100%;
+  height: 280px;
   background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%);
 }
 
@@ -80,7 +97,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -94,80 +111,93 @@
 
 .play-text {
   font-family: 'VT323', monospace;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   color: #FFFFFF;
   text-transform: uppercase;
-  letter-spacing: 3px;
-  padding: 12px 30px;
+  letter-spacing: 2px;
+  padding: 12px 28px;
   border: none;
   border-radius: 8px;
   background: #22C55E;
-  transform: scale(0.8);
-  opacity: 0;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
-}
-
-.game-card:hover .play-text {
-  opacity: 1;
-  transform: scale(1);
 }
 
 .play-text:hover {
   background: #16A34A;
-  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.6);
+  transform: scale(1.05);
 }
 
 /* Card Info */
 .card-info {
-  padding: 15px;
+  padding: 20px;
   text-align: center;
   background: #141A2E;
 }
 
 .card-name {
   font-family: 'Press Start 2P', cursive;
-  font-size: 0.6rem;
+  font-size: 0.65rem;
   color: #FFD700;
-  line-height: 1.5;
+  line-height: 1.6;
   text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
 }
 
 /* Responsive */
-@media (max-width: 1200px) {
+@media (max-width: 1400px) {
   .games-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 320px);
+    max-width: 1050px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .games-grid {
+    grid-template-columns: repeat(2, 320px);
+    max-width: 700px;
   }
 }
 
 @media (max-width: 768px) {
   .games-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 280px);
     gap: 20px;
   }
   
+  .game-card {
+    width: 280px;
+    height: 380px;
+  }
+  
   .card-image {
-    height: 220px;
+    height: 240px;
+  }
+  
+  .card-image img {
+    height: 240px;
   }
   
   .library-title {
     font-size: 1.2rem;
   }
-  
-  .play-text {
-    font-size: 1.4rem;
-    padding: 10px 24px;
-  }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 620px) {
   .games-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .game-card {
+    width: 100%;
     max-width: 320px;
+    height: 400px;
   }
   
   .card-image {
-    height: 280px;
+    height: 260px;
+  }
+  
+  .card-image img {
+    height: 260px;
   }
   
   .library-title {

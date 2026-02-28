@@ -1,5 +1,5 @@
-/* App.css */
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+/* App.css - Retro Arcade Theme */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
 
 * {
   box-sizing: border-box;
@@ -8,8 +8,8 @@
 body {
   margin: 0;
   padding: 0;
-  background: #0a0a12;
-  color: #ffffff;
+  background: #0B0F1A;
+  color: #FFFFFF;
   font-family: 'Press Start 2P', cursive;
 }
 
@@ -21,18 +21,31 @@ body {
 
 .app-header {
   text-align: center;
-  padding: 30px 20px;
-  background: linear-gradient(180deg, rgba(155, 89, 182, 0.2) 0%, transparent 100%);
-  border-bottom: 3px solid #9b59b6;
+  padding: 25px 20px;
+  background: linear-gradient(180deg, #141A2E 0%, #0B0F1A 100%);
+  border-bottom: 2px solid #7C3AED;
 }
 
 .app-header h1 {
   margin: 0;
-  font-size: 1.8rem;
-  text-shadow: 0 0 20px #9b59b6;
+  font-size: 1.6rem;
+  color: #FFD700;
+  text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+  letter-spacing: 3px;
 }
 
 .app-main {
   flex: 1;
-  padding: 20px;
+  padding: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .app-header h1 {
+    font-size: 1.1rem;
+  }
+  
+  .app-header {
+    padding: 20px 15px;
+  }
 }

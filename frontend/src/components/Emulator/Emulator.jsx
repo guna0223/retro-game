@@ -3,6 +3,16 @@ import GameCard from "./GameCard";
 import "../css/GameCard.css";
 import "../css/Emulator.css";
 
+// Categories
+const CATEGORIES = [
+  { id: "all", name: "All Games" },
+  { id: "action", name: "Action" },
+  { id: "racing", name: "Racing" },
+  { id: "fighting", name: "Fighting" },
+  { id: "adventure", name: "Adventure" },
+  { id: "rpg", name: "RPG" }
+];
+
 // Game library
 const GAMES = [
   {
@@ -11,7 +21,8 @@ const GAMES = [
     file: "Super Mario World.smc",
     color: "#e74c3c",
     image: "mario.jpg",
-    system: "snes"
+    system: "snes",
+    category: "action"
   },
   {
     id: "2",
@@ -19,7 +30,8 @@ const GAMES = [
     file: "Donkey Kong Country (U) (V1.2) [!].smc",
     color: "#f39c12",
     image: "monkey.jpg",
-    system: "snes"
+    system: "snes",
+    category: "action"
   },
   {
     id: "3",
@@ -27,7 +39,8 @@ const GAMES = [
     file: "Top Gear (USA).sfc",
     color: "#3498db",
     image: "topgear.jpeg",
-    system: "snes"
+    system: "snes",
+    category: "racing"
   },
   {
     id: "4",
@@ -35,7 +48,8 @@ const GAMES = [
     file: "Street Fighter Two .smc",
     color: "#e74c3c",
     image: "Street Fighter Two.jpg",
-    system: "snes"
+    system: "snes",
+    category: "fighting"
   },
   {
     id: "5",
@@ -43,7 +57,8 @@ const GAMES = [
     file: "Spider-Man.sfc",
     color: "#e74c3c",
     image: "spiderman1.jpeg",
-    system: "snes"
+    system: "snes",
+    category: "action"
   },
   {
     id: "6",
@@ -51,7 +66,8 @@ const GAMES = [
     file: "Spiderman2.gba",
     color: "#e74c3c",
     image: "spiderman2.jpeg",
-    system: "gba"
+    system: "gba",
+    category: "action"
   },
    {
     id: "7",
@@ -59,7 +75,8 @@ const GAMES = [
     file: "Pokemon.gba",
     color: "#e74c3c",
     image: "spiderman2.jpeg",
-    system: "gba"
+    system: "gba",
+    category: "rpg"
   },
 ];
 
@@ -76,6 +93,12 @@ function Emulator() {
   const [selectedGame, setSelectedGame] = useState(null);
   const [gameStarted, setGameStarted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("all");
+
+  // Filter games by category
+  const filteredGames = selectedCategory === "all" 
+    ? GAMES 
+    : GAMES.filter(game => game.category === selectedCategory);
 
   // Select a game (show preview)
   const selectGame = useCallback((game) => {
@@ -190,8 +213,21 @@ function Emulator() {
         <div className="game-library">
           <h2 className="library-title">RETRO ARCADE</h2>
 
+          {/* Category Filters */}
+          <div className="category-filters">
+            {CATEGORIES.map((category) => (
+              <button
+                key={category.id}
+                className={`category-btn ${selectedCategory === category.id ? 'active' : ''}`}
+                onClick={() => setSelectedCategory(category.id)}
+              >
+                {category.name}
+              </button>
+            ))}
+          </div>
+
           <div className="games-grid">
-            {GAMES.map((game) => (
+            {filteredGames.map((game) => (
               <GameCard
                 key={game.id}
                 game={game}
