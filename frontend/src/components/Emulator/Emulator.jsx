@@ -70,7 +70,7 @@ const GAMES = [
     system: "gba",
     category: "action"
   },
-   {
+  {
     id: "7",
     name: "Pokemon",
     file: "Pokemon.gba",
@@ -85,6 +85,24 @@ const GAMES = [
     file: "New Super Mario Bros.nds",
     color: "#e74c3c",
     image: "new-mario.jpg",
+    system: "nds",
+    category: "action"
+  },
+  {
+    id: "9",
+    name: "Mario Kart DS ",
+    file: "Mario Kart.nds",
+    color: "#e74c3c",
+    image: "mario-kart.jpg",
+    system: "nds",
+    category: "action"
+  },
+  {
+    id: "10",
+    name: "Home Alon 2 ",
+    file: "Home Alone 2.nes",
+    color: "#e74c3c",
+    image: "home-alone-2.jpg",
     system: "nds",
     category: "action"
   },
@@ -115,7 +133,7 @@ function Emulator() {
       if (gameKeys.includes(e.key)) {
         e.preventDefault();
       }
-      
+
       // Dispatch to emulator if available
       if (window.EJS && window.EJS.emulator) {
         try {
@@ -166,7 +184,7 @@ function Emulator() {
     window.EJS_core = emulatorCore;
     window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
     window.EJS_gameUrl = `/games/${selectedGame.file}`;
-    
+
     // Enable keyboard controls
     window.EJS_controls = true;
     window.EJS_autoKeyPress = true;
