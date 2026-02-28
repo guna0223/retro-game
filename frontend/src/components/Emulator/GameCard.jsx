@@ -24,8 +24,10 @@ function GameCard({ game, onPlay }) {
           <div className="no-image"></div>
         )}
       </div>
-      <span className="card-name">{game.name}</span>
-      <span className="card-play">PLAY</span>
+      <div className="card-info">
+        <span className="card-name">{game.name}</span>
+        <span className="card-play">PLAY</span>
+      </div>
       <div className="card-glow"></div>
     </button>
   );

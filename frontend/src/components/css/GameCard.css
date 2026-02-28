@@ -1,35 +1,74 @@
-/* GameCard.css */
+/* GameCard.css - Big Game Cards */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
 
+/* Game Library Container */
+.game-library {
+  text-align: center;
+  padding: 20px 0;
+}
+
+/* Large Title */
+.library-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.5rem;
+  color: #ffffff;
+  text-shadow: 
+    0 0 10px #ff00ff,
+    0 0 20px #ff00ff,
+    0 0 40px #ff00ff;
+  margin-bottom: 40px;
+  letter-spacing: 4px;
+  animation: titleGlow 2s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+  0%, 100% { 
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 40px #ff00ff;
+  }
+  50% { 
+    text-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff, 0 0 60px #00ffff;
+  }
+}
+
+/* Big Game Cards Grid */
+.games-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Big Game Card */
 .game-card {
   position: relative;
-  background: var(--card-bg, #12121a);
+  background: #12121a;
   border: 3px solid var(--accent, #9b59b6);
-  border-radius: 16px;
-  padding: 15px;
+  border-radius: 20px;
+  padding: 0;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 12px;
   overflow: hidden;
+  width: 280px;
 }
 
 .game-card:hover {
-  transform: translateY(-8px) scale(1.02);
+  transform: translateY(-10px) scale(1.02);
   border-color: #00ffff;
   box-shadow: 
-    0 15px 40px rgba(0, 255, 255, 0.3),
-    0 0 20px rgba(0, 255, 255, 0.2),
-    inset 0 0 30px rgba(0, 255, 255, 0.1);
+    0 20px 50px rgba(0, 255, 255, 0.4),
+    0 0 30px rgba(0, 255, 255, 0.3);
 }
 
+/* Big Image Container */
 .card-image {
   width: 100%;
-  aspect-ratio: 3/4;
+  height: 350px;
   background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%);
-  border-radius: 10px;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -40,6 +79,11 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.game-card:hover .card-image img {
+  transform: scale(1.05);
 }
 
 /* Placeholder when no image */
@@ -47,24 +91,52 @@
   width: 100%;
   height: 100%;
   background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-image::after {
+  content: 'NO IMAGE';
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.6rem;
+  color: #444;
+}
+
+/* Card Info */
+.card-info {
+  padding: 20px;
+  text-align: center;
 }
 
 .card-name {
   font-family: 'Press Start 2P', cursive;
-  font-size: 0.55rem;
+  font-size: 0.7rem;
   color: #ffffff;
   text-align: center;
   line-height: 1.4;
+  margin-bottom: 15px;
 }
 
 .card-play {
   font-family: 'VT323', monospace;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #00ff00;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
+  padding: 10px 30px;
+  background: linear-gradient(180deg, #00ff00 0%, #00cc00 100%);
+  border-radius: 25px;
+  display: inline-block;
+  transition: all 0.2s;
 }
 
+.game-card:hover .card-play {
+  background: linear-gradient(180deg, #00ffff 0%, #00cccc 100%);
+  color: #000;
+}
+
+/* Glow Effect */
 .card-glow {
   position: absolute;
   top: 50%;
@@ -77,10 +149,32 @@
   opacity: 0;
   transition: all 0.5s;
   z-index: 0;
+  pointer-events: none;
 }
 
 .game-card:hover .card-glow {
   width: 200%;
   height: 200%;
   opacity: 0.3;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .games-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .game-card {
+    width: 100%;
+    max-width: 320px;
+  }
+  
+  .card-image {
+    height: 280px;
+  }
+  
+  .library-title {
+    font-size: 1rem;
+  }
 }
