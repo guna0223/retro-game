@@ -12,8 +12,8 @@
 .library-title {
   font-family: 'Press Start 2P', cursive;
   font-size: 1.5rem;
-  color: #FFD700;
-  text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+  color: #00FF88;
+  text-shadow: 0 0 10px #00FF88, 0 0 20px #00FF88;
   margin-bottom: 30px;
   letter-spacing: 4px;
 }
@@ -32,10 +32,10 @@
 .game-card {
   width: 100%;
   max-width: 280px;
-  height: 360px;
-  background: #141A2E;
-  border: 2px solid #7C3AED;
-  border-radius: 14px;
+  height: 380px;
+  background: #1a1a2e;
+  border: 2px solid #00FF88;
+  border-radius: 12px;
   overflow: hidden;
   transition: 0.3s;
   cursor: pointer;
@@ -45,14 +45,14 @@
 
 .game-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 0 20px #00E5FF;
+  box-shadow: 0 0 25px #00FF88;
 }
 
-/* Card Image */
+/* Card Image - Full Size */
 .card-image {
   position: relative;
   width: 100%;
-  height: 220px;
+  height: 280px;
   overflow: hidden;
 }
 
@@ -71,7 +71,7 @@
 /* No Image */
 .no-image {
   width: 100%;
-  height: 220px;
+  height: 280px;
   background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%);
 }
 
@@ -82,7 +82,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -96,34 +96,34 @@
 
 .play-text {
   font-family: 'VT323', monospace;
-  font-size: 1.3rem;
-  color: #FFFFFF;
+  font-size: 1.4rem;
+  color: #0B0F1A;
   text-transform: uppercase;
   letter-spacing: 2px;
-  padding: 10px 22px;
+  padding: 12px 26px;
   border: none;
   border-radius: 6px;
-  background: #22C55E;
+  background: #00FF88;
   transition: all 0.3s ease;
 }
 
 .play-text:hover {
-  background: #16A34A;
+  background: #00CC6A;
 }
 
 /* Card Info */
 .card-info {
-  padding: 15px;
+  padding: 16px;
   text-align: center;
-  background: #141A2E;
+  background: #1a1a2e;
 }
 
 .card-name {
   font-family: 'Press Start 2P', cursive;
   font-size: 0.55rem;
-  color: #FFD700;
+  color: #00FF88;
   line-height: 1.5;
-  text-shadow: 0 0 6px rgba(255, 215, 0, 0.5);
+  text-shadow: 0 0 6px rgba(0, 255, 136, 0.5);
 }
 
 /* Responsive - Tablet */
@@ -135,15 +135,15 @@
   
   .game-card {
     max-width: 260px;
-    height: 340px;
+    height: 360px;
   }
   
   .card-image {
-    height: 200px;
+    height: 260px;
   }
   
   .no-image {
-    height: 200px;
+    height: 260px;
   }
 }
 
@@ -155,15 +155,15 @@
   
   .game-card {
     max-width: 280px;
-    height: 360px;
+    height: 370px;
   }
   
   .card-image {
-    height: 220px;
+    height: 270px;
   }
   
   .no-image {
-    height: 220px;
+    height: 270px;
   }
 }
 
@@ -181,15 +181,15 @@
   
   .game-card {
     max-width: 100%;
-    height: 320px;
+    height: 340px;
   }
   
   .card-image {
-    height: 190px;
+    height: 240px;
   }
   
   .no-image {
-    height: 190px;
+    height: 240px;
   }
   
   .card-info {
@@ -201,8 +201,8 @@
   }
   
   .play-text {
-    font-size: 1.1rem;
-    padding: 8px 18px;
+    font-size: 1.2rem;
+    padding: 10px 20px;
   }
 }
 
@@ -213,10 +213,10 @@
   
   .game-card {
     max-width: 280px;
-    height: 340px;
+    height: 360px;
   }
   
   .card-image {
-    height: 210px;
+    height: 260px;
   }
 }

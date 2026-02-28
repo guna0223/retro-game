@@ -2,8 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
 
 .footer {
-  background: linear-gradient(180deg, #0B0F1A 0%, #141A2E 100%);
-  border-top: 2px solid #7C3AED;
+  background: linear-gradient(180deg, #0B0F1A 0%, #1a1a2e 100%);
+  border-top: 2px solid #00FF88;
   padding: 40px 20px 20px;
   margin-top: auto;
 }
@@ -25,15 +25,15 @@
 .footer-title {
   font-family: 'Press Start 2P', cursive;
   font-size: 0.8rem;
-  color: #FFD700;
-  text-shadow: 0 0 10px #FFD700;
+  color: #00FF88;
+  text-shadow: 0 0 10px #00FF88;
   margin-bottom: 10px;
 }
 
 .footer-subtitle {
   font-family: 'VT323', monospace;
   font-size: 1.2rem;
-  color: #00E5FF;
+  color: #00FF88;
   margin-bottom: 5px;
 }
 
@@ -52,7 +52,7 @@
 }
 
 .footer-link:hover {
-  color: #00E5FF;
+  color: #00FF88;
 }
 
 .footer-bottom {
