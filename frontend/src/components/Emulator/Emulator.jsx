@@ -42,15 +42,23 @@ const GAMES = [
     name: "Spider-Man",
     file: "Spider-Man.sfc",
     color: "#e74c3c",
-    image: "Street Fighter Two",
+    image: "spiderman1.jpeg",
     system: "snes"
-  }, 
+  },
   {
     id: "6",
     name: "Spider-Man-2",
     file: "Spiderman2.gba",
     color: "#e74c3c",
-    image: "Street Fighter Two",
+    image: "spiderman2.jpeg",
+    system: "gba"
+  },
+   {
+    id: "7",
+    name: "Pokemon",
+    file: "Pokemon.gba",
+    color: "#e74c3c",
+    image: "spiderman2.jpeg",
     system: "gba"
   },
 ];
@@ -122,27 +130,53 @@ function Emulator() {
 
   // Go back to game selection - stop game and sound
   const goBack = useCallback(() => {
-    // Try to stop the emulator if it exists
-    if (window.EJS && window.EJS.stop) {
-      try {
-        window.EJS.stop();
-      } catch (e) {
-        console.log("Emulator stop error:", e);
+    // Find and remove all audio elements created by the emulator
+    const allAudio = document.querySelectorAll('audio');
+    allAudio.forEach(audio => {
+      audio.pause();
+      audio.src = '';
+      audio.remove();
+    });
+
+    // Stop EmulatorJS if it exists
+    try {
+      // Try to access the emulator through the element
+      const gameContainer = document.getElementById('game');
+      if (gameContainer && gameContainer.emulator) {
+        if (gameContainer.emulator.stop) {
+          gameContainer.emulator.stop();
+        }
+        gameContainer.emulator = null;
       }
+      // Also try window.EJS
+      if (window.EJS) {
+        if (window.EJS.stop) window.EJS.stop();
+        if (window.EJS.emulator && window.EJS.emulator.stop) {
+          window.EJS.emulator.stop();
+        }
+      }
+    } catch (e) {
+      console.log("Emulator stop error:", e);
     }
-    
+
     // Clear the game container
     const gameDiv = document.getElementById("game");
     if (gameDiv) {
       gameDiv.innerHTML = "";
+      gameDiv.innerHTML = '';
     }
-    
+
     // Remove the emulator script to fully stop
     const existingScript = document.querySelector('script[data-ejs]');
     if (existingScript) {
       existingScript.remove();
     }
-    
+
+    // Clear EJS variables
+    window.EJS_player = undefined;
+    window.EJS_core = undefined;
+    window.EJS_gameUrl = undefined;
+
     setSelectedGame(null);
     setGameStarted(false);
   }, []);
