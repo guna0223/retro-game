@@ -9,7 +9,8 @@ const GAMES = [
     id: "mario",
     name: "Super Mario World",
     file: "Super Mario World.smc",
-    color: "#e74c3c"
+    color: "#e74c3c",
+    image: "pngwing.com.png"
   },
   {
     id: "donkey-kong",

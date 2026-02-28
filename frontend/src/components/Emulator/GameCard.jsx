@@ -5,7 +5,7 @@ function GameCard({ game, onPlay }) {
   const [imageError, setImageError] = useState(false);
   
   // Build image path
-  const imagePath = `/game-image/${game.id}.png`;
+  const imagePath = game.image ? `/game-image/${game.image}` : null;
 
   return (
     <button 
@@ -14,7 +14,7 @@ function GameCard({ game, onPlay }) {
       style={{ "--accent": game.color }}
     >
       <div className="card-image">
-        {!imageError ? (
+        {imagePath && !imageError ? (
           <img 
             src={imagePath} 
             alt={game.name}
