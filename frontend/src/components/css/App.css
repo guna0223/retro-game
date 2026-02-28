@@ -8,8 +8,8 @@
 body {
   margin: 0;
   padding: 0;
-  background: #0a0a0f;
-  color: #fff;
+  background: #0a0a12;
+  color: #ffffff;
   font-family: 'Press Start 2P', cursive;
 }
 
@@ -22,12 +22,14 @@ body {
 .app-header {
   text-align: center;
   padding: 30px 20px;
-  border-bottom: 2px solid #333;
+  background: linear-gradient(180deg, rgba(155, 89, 182, 0.2) 0%, transparent 100%);
+  border-bottom: 3px solid #9b59b6;
 }
 
 .app-header h1 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
+  text-shadow: 0 0 20px #9b59b6;
 }
 
 .app-main {

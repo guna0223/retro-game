@@ -1,0 +1,86 @@
+/* GameCard.css */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+.game-card {
+  position: relative;
+  background: var(--card-bg, #12121a);
+  border: 3px solid var(--accent, #9b59b6);
+  border-radius: 16px;
+  padding: 15px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  overflow: hidden;
+}
+
+.game-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: #00ffff;
+  box-shadow: 
+    0 15px 40px rgba(0, 255, 255, 0.3),
+    0 0 20px rgba(0, 255, 255, 0.2),
+    inset 0 0 30px rgba(0, 255, 255, 0.1);
+}
+
+.card-image {
+  width: 100%;
+  aspect-ratio: 3/4;
+  background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Placeholder when no image */
+.no-image {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%);
+}
+
+.card-name {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.55rem;
+  color: #ffffff;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.card-play {
+  font-family: 'VT323', monospace;
+  font-size: 1rem;
+  color: #00ff00;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.card-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, var(--accent, #9b59b6) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all 0.5s;
+  z-index: 0;
+}
+
+.game-card:hover .card-glow {
+  width: 200%;
+  height: 200%;
+  opacity: 0.3;
+}

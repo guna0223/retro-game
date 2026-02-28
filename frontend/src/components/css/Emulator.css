@@ -1,26 +1,226 @@
-/* Emulator.css */
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+/* Emulator.css - Modern Retro Arcade UI */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
 
-.emulator-container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
+:root {
+  --primary: #9b59b6;
+  --primary-glow: rgba(155, 89, 182, 0.6);
+  --neon-cyan: #00ffff;
+  --neon-pink: #ff00ff;
+  --neon-green: #00ff00;
+  --dark-bg: #0a0a12;
+  --card-bg: #12121a;
+  --text: #ffffff;
+  --text-dim: #888899;
 }
 
-.emulator-wrapper {
+.arcade-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+}
+
+/* Animated arcade background */
+.arcade-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse at 50% 0%, rgba(155, 89, 182, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 0% 100%, rgba(52, 152, 219, 0.1) 0%, transparent 40%),
+    radial-gradient(ellipse at 100% 100%, rgba(255, 0, 255, 0.1) 0%, transparent 40%),
+    linear-gradient(180deg, #050508 0%, #0a0a12 50%, #050508 100%);
+  z-index: -1;
+}
+
+.arcade-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(155, 89, 182, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(155, 89, 182, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Game Library */
+.game-library {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.library-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.5rem;
+  color: var(--text);
+  text-shadow: 0 0 10px var(--neon-pink),
+0 10px var(--neon-pink),
+    0 0 20px var(--neon-pink),
+    0 0 40px var(--neon-pink);
+  margin-bottom: 30px;
+  letter-spacing: 4px;
+  animation: titleGlow 2s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+  0%, 100% { 
+    text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink);
+  }
+  50% { 
+    text-shadow: 0 0 15px var(--neon-cyan), 0 0 30px var(--neon-cyan), 0 0 60px var(--neon-cyan);
+  }
+}
+
+/* Games Grid */
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 25px;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Game Card */
+.game-card {
+  position: relative;
+  background: var(--card-bg);
+  border: 3px solid var(--accent, var(--primary));
+  border-radius: 16px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  overflow: hidden;
+}
+
+.game-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--neon-cyan);
+  box-shadow: 
+    0 15px 40px rgba(0, 255, 255, 0.3),
+    0 0 20px rgba(0, 255, 255, 0.2),
+    inset 0 0 30px rgba(0, 255, 255, 0.1);
+}
+
+.card-image {
+  width: 90px;
+  height: 90px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-icon {
+  font-size: 40px;
+}
+
+.card-name {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.6rem;
+  color: var(--text);
+  text-align: center;
+  line-height: 1.4;
+}
+
+.card-play {
+  font-family: 'VT323', monospace;
+  font-size: 1rem;
+  color: var(--neon-green);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.card-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, var(--accent, var(--primary)) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all 0.5s;
+  z-index: 0;
+}
+
+.game-card:hover .card-glow {
+  width: 200%;
+  height: 200%;
+  opacity: 0.3;
+}
+
+/* Back Button */
+.back-btn {
+  display: block;
+  margin: 0 auto 20px;
+  background: linear-gradient(180deg, #6c5ce7 0%, #5b4cdb 100%);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  color: #fff;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.6rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 0 #4a3fc7, 0 0 15px rgba(108, 92, 231, 0.4);
+}
+
+.back-btn:hover {
+  background: linear-gradient(180deg, #a29bfe 0%, #6c5ce7 100%);
+  transform: translateY(-2px);
+}
+
+/* Emulator Area */
+.emulator-area {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.emulator-screen {
   position: relative;
   width: 100%;
+  max-width: 800px;
   aspect-ratio: 4/3;
-  background: #000;
-  border: 4px solid #333;
-  border-radius: 8px;
+  border-radius: 16px;
   overflow: hidden;
-  margin-bottom: 20px;
+  box-shadow: 
+    0 0 30px rgba(155, 89, 182, 0.4),
+    0 0 60px rgba(155, 89, 182, 0.2),
+    inset 0 0 80px rgba(0, 0, 0, 0.6);
+  border: 4px solid var(--primary);
+  animation: neonBorder 3s ease-in-out infinite;
+  background: #000;
+}
+
+@keyframes neonBorder {
+  0%, 100% { 
+    border-color: var(--primary);
+    box-shadow: 0 0 30px rgba(155, 89, 182, 0.4), 0 0 60px rgba(155, 89, 182, 0.2);
+  }
+  50% { 
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.4), 0 0 60px rgba(0, 255, 255, 0.2);
+  }
 }
 
 .emulator-game {
   width: 100%;
   height: 100%;
+  background: #000;
 }
 
 .emulator-game canvas {
@@ -28,14 +228,118 @@
   height: 100% !important;
 }
 
-.controls-info {
-  text-align: center;
-  color: #888;
-  font-family: 'Press Start 2P', cursive;
-  font-size: 0.6rem;
-  line-height: 2;
+/* Loading */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 100;
 }
 
-.controls-info p {
-  margin: 5px 0;
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #2d3436;
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-overlay p {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.7rem;
+  color: var(--text);
+  margin-top: 20px;
+}
+
+/* Controls Panel */
+.controls-panel {
+  background: rgba(18, 18, 26, 0.9);
+  border: 2px solid rgba(155, 89, 182, 0.3);
+  border-radius: 16px;
+  padding: 25px;
+  backdrop-filter: blur(10px);
+}
+
+.controls-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8rem;
+  color: var(--neon-cyan);
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+.controls-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.control-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.control-keys {
+  display: flex;
+  gap: 4px;
+}
+
+.control-keys kbd {
+  display: inline-block;
+  background: linear-gradient(180deg, #2a2a3a 0%, #1a1a2a 100%);
+  border: 2px solid var(--primary);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.5rem;
+  color: var(--text);
+  box-shadow: 0 3px 0 #0a0a15, 0 0 10px rgba(155, 89, 182, 0.3);
+}
+
+.control-action {
+  font-family: 'VT323', monospace;
+  font-size: 1.1rem;
+  color: var(--text-dim);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .games-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 10px;
+  }
+  
+  .game-card {
+    padding: 15px;
+  }
+  
+  .card-image {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .library-title {
+    font-size: 1rem;
+  }
+  
+  .control-row {
+    width: 100%;
+    justify-content: center;
+  }
 }

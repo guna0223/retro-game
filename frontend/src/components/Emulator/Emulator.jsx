@@ -1,61 +1,150 @@
-import { useEffect, useRef } from "react";
+import { useState, useCallback } from "react";
+import GameCard from "./GameCard";
+import "../css/GameCard.css";
 import "../css/Emulator.css";
 
+// Game library
+const GAMES = [
+  {
+    id: "mario",
+    name: "Super Mario World",
+    file: "Super Mario World.smc",
+    color: "#e74c3c"
+  },
+  {
+    id: "donkey-kong",
+    name: "Donkey Kong Country",
+    file: "Donkey Kong Country (U) (V1.2) [!].smc",
+    color: "#f39c12"
+  },
+  {
+    id: "top-gear",
+    name: "Top Gear",
+    file: "Top Gear (USA).sfc",
+    color: "#3498db"
+  }
+];
+
+// Controls
+const CONTROLS = [
+  { keys: ["↑", "↓", "←", "→"], action: "Move" },
+  { keys: ["Z"], action: "A Button" },
+  { keys: ["X"], action: "B Button" },
+  { keys: ["Enter"], action: "Start" },
+  { keys: ["Shift"], action: "Select" }
+];
+
 function Emulator() {
-  const containerRef = useRef(null);
-  const isLoaded = useRef(false);
+  const [selectedGame, setSelectedGame] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    // Prevent multiple loads
-    if (isLoaded.current) return;
-    isLoaded.current = true;
+  // Play a game
+  const playGame = useCallback((game) => {
+    setSelectedGame(game);
+    setIsLoading(true);
 
-    // Set EmulatorJS globals BEFORE loading the script
+    // Configure EmulatorJS
     window.EJS_player = "#game";
     window.EJS_core = "snes";
     window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
-    window.EJS_gameUrl = "/games/Super Mario World.smc";
+    window.EJS_gameUrl = `/games/${game.file}`;
 
-    console.log("EmulatorJS Config:");
-    console.log("  Player:", window.EJS_player);
-    console.log("  Core:", window.EJS_core);
-    console.log("  Path:", window.EJS_pathtodata);
-    console.log("  ROM:", window.EJS_gameUrl);
+    // Clear previous
+    const gameDiv = document.getElementById("game");
+    if (gameDiv) {
+      gameDiv.innerHTML = "";
+    }
 
-    // Create and load the script
+    // Remove old script
+    const existingScript = document.querySelector('script[data-ejs]');
+    if (existingScript) {
+      existingScript.remove();
+    }
+
+    // Load new script
     const script = document.createElement("script");
     script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
     script.async = true;
+    script.setAttribute('data-ejs', 'true');
 
     script.onload = () => {
-      console.log("✅ EmulatorJS loader loaded successfully");
+      setIsLoading(false);
     };
 
-    script.onerror = (err) => {
-      console.error("❌ Failed to load EmulatorJS:", err);
+    script.onerror = () => {
+      setIsLoading(false);
     };
 
     document.body.appendChild(script);
-
-    // Cleanup on unmount
-    return () => {
-      isLoaded.current = false;
-    };
   }, []);
 
-  return (
-    <div className="emulator-container" ref={containerRef}>
-      <div className="emulator-wrapper">
-        <div id="game" className="emulator-game"></div>
+  // Go back to game selection
+  const goBack = useCallback(() => {
+    setSelectedGame(null);
+    const gameDiv = document.getElementById("game");
+    if (gameDiv) {
+      gameDiv.innerHTML = "";
+    }
+  }, []);
+
+  // Show game selection grid
+  if (!selectedGame) {
+    return (
+      <div className="arcade-container">
+        <div className="arcade-bg"></div>
+        
+        <div className="game-library">
+          <h2 className="library-title">SELECT GAME</h2>
+          
+          <div className="games-grid">
+            {GAMES.map((game) => (
+              <GameCard 
+                key={game.id} 
+                game={game} 
+                onPlay={playGame} 
+              />
+            ))}
+          </div>
+        </div>
       </div>
+    );
+  }
+
+  // Show emulator
+  return (
+    <div className="arcade-container">
+      <div className="arcade-bg"></div>
       
-      <div className="controls-info">
-        <p><strong>Controls:</strong></p>
-        <p>Arrow Keys → Move</p>
-        <p>Z → A button</p>
-        <p>X → B button</p>
-        <p>Enter → Start</p>
-        <p>Shift → Select</p>
+      <button className="back-btn" onClick={goBack}>
+        ← Back to Games
+      </button>
+
+      <div className="emulator-area">
+        <div className="emulator-screen">
+          {isLoading && (
+            <div className="loading-overlay">
+              <div className="loading-spinner"></div>
+              <p>Loading {selectedGame.name}...</p>
+            </div>
+          )}
+          <div id="game" className="emulator-game"></div>
+        </div>
+      </div>
+
+      <div className="controls-panel">
+        <h3 className="controls-title">CONTROLS</h3>
+        <div className="controls-grid">
+          {CONTROLS.map((control, i) => (
+            <div key={i} className="control-row">
+              <div className="control-keys">
+                {control.keys.map((key, j) => (
+                  <kbd key={j}>{key}</kbd>
+                ))}
+              </div>
+              <span className="control-action">{control.action}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
