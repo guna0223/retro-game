@@ -93,12 +93,6 @@ function Emulator() {
   const [selectedGame, setSelectedGame] = useState(null);
   const [gameStarted, setGameStarted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("all");
-
-  // Filter games by category
-  const filteredGames = selectedCategory === "all" 
-    ? GAMES 
-    : GAMES.filter(game => game.category === selectedCategory);
 
   // Select a game (show preview)
   const selectGame = useCallback((game) => {
@@ -213,21 +207,8 @@ function Emulator() {
         <div className="game-library">
           <h2 className="library-title">RETRO ARCADE</h2>
 
-          {/* Category Filters */}
-          <div className="category-filters">
-            {CATEGORIES.map((category) => (
-              <button
-                key={category.id}
-                className={`category-btn ${selectedCategory === category.id ? 'active' : ''}`}
-                onClick={() => setSelectedCategory(category.id)}
-              >
-                {category.name}
-              </button>
-            ))}
-          </div>
-
-          <div className="games-grid">
-            {filteredGames.map((game) => (
+          <div className="game-grid">
+            {GAMES.map((game) => (
               <GameCard
                 key={game.id}
                 game={game}

@@ -3,16 +3,16 @@ import { Link, useNavigate } from "react-router-dom";
 import "../css/Navbar.css";
 
 const CATEGORIES = [
-    { id: "spiderman", name: "Spider-Man Games", path: "/category/spiderman" },
-    { id: "pokemon", name: "Pokemon Games", path: "/category/pokemon" },
-    { id: "ps1", name: "PS1 Games", path: "/category/ps1" },
-    { id: "snes", name: "SNES Games", path: "/category/snes" },
-    { id: "gba", name: "GBA Games", path: "/category/gba" }
+    { id: "spiderman", name: "Spider-Man", path: "/category/spiderman" },
+    { id: "pokemon", name: "Pokemon", path: "/category/pokemon" },
+    { id: "ps1", name: "PS1", path: "/category/ps1" },
+    { id: "snes", name: "SNES", path: "/category/snes" },
+    { id: "gba", name: "GBA", path: "/category/gba" }
 ];
 
 function Navbar() {
     const [searchQuery, setSearchQuery] = useState("");
-    const [showDropdown, setShowDropdown] = useState(false);
+    const [showCategories, setShowCategories] = useState(false);
     const navigate = useNavigate();
 
     const handleSearch = (e) => {
@@ -23,41 +23,45 @@ function Navbar() {
         }
     };
 
+    const toggleCategories = () => {
+        setShowCategories(!showCategories);
+    };
+
     return (
         <nav className="navbar">
             <div className="navbar-container">
                 <Link to="/" className="navbar-logo">
-                    Retro Game Vault
+                    Retro SNES Arcade
                 </Link>
 
                 <div className="navbar-links">
                     <Link to="/" className="nav-link">
                         Home
                     </Link>
-
-                    <div
-                        className="nav-dropdown"
-                        onMouseEnter={() => setShowDropdown(true)}
-                        onMouseLeave={() => setShowDropdown(false)}
-                    >
-                        <button className="nav-dropdown-btn">
-                            Category ▼
-                        </button>
-                        {showDropdown && (
-                            <div className="dropdown-menu">
-                                {CATEGORIES.map((category) => (
-                                    <Link
-                                        key={category.id}
-                                        to={category.path}
-                                        className="dropdown-item"
-                                    >
-                                        {category.name}
-                                    </Link>
-                                ))}
-                            </div>
-                        )}
-                    </div>
+                    
+                    <button className="nav-link category-btn" onClick={toggleCategories}>
+                        Category
+                    </button>
+                    
+                    <Link to="/about" className="nav-link">
+                        About
+                    </Link>
                 </div>
+
+                {showCategories && (
+                    <div className="categories-panel">
+                        {CATEGORIES.map((category) => (
+                            <Link
+                                key={category.id}
+                                to={category.path}
+                                className="category-item"
+                                onClick={() => setShowCategories(false)}
+                            >
+                                {category.name}
+                            </Link>
+                        ))}
+                    </div>
+                )}
 
                 <form className="navbar-search" onSubmit={handleSearch}>
                     <input

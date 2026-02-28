@@ -4,112 +4,47 @@
 /* Game Library */
 .game-library {
   text-align: center;
-  padding: 50px 20px;
+  padding: 40px 20px;
   background: #0B0F1A;
   min-height: 100vh;
-  position: relative;
-}
-
-.game-library::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(ellipse at 20% 20%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 80%, rgba(0, 229, 255, 0.1) 0%, transparent 50%);
-  pointer-events: none;
 }
 
 .library-title {
   font-family: 'Press Start 2P', cursive;
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: #FFD700;
-  text-shadow: 0 0 15px #FFD700, 0 0 30px #FFD700, 0 0 45px #B8860B;
+  text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
   margin-bottom: 50px;
-  letter-spacing: 8px;
-  position: relative;
-  display: inline-block;
-  animation: titlePulse 2s ease-in-out infinite;
+  letter-spacing: 6px;
 }
 
-@keyframes titlePulse {
-  0%, 100% { 
-    text-shadow: 0 0 15px #FFD700, 0 0 30px #FFD700;
-  }
-  50% { 
-    text-shadow: 0 0 20px #FFD700, 0 0 40px #FFD700, 0 0 60px #FFD700;
-  }
-}
-
-/* Games Grid - 4 columns */
-.games-grid {
+/* Game Grid */
+.game-grid {
   display: grid;
-  grid-template-columns: repeat(4, 320px);
-  gap: 35px;
-  padding: 30px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
   max-width: 1500px;
-  margin: 0 auto;
-  justify-content: center;
-  position: relative;
-  z-index: 1;
-}
-
-/* Big screens */
-@media (min-width: 1600px) {
-  .games-grid {
-    grid-template-columns: repeat(4, 320px);
-    max-width: 1700px;
-    gap: 40px;
-  }
-}
-
-@media (min-width: 2000px) {
-  .games-grid {
-    grid-template-columns: repeat(4, 320px);
-    max-width: 2000px;
-    gap: 45px;
-  }
+  margin: auto;
+  padding: 20px;
 }
 
 /* Game Card */
 .game-card {
   width: 320px;
   height: 420px;
-  background: linear-gradient(145deg, #1a1f35 0%, #141A2E 100%);
+  background: #141A2E;
   border: 2px solid #7C3AED;
-  border-radius: 20px;
+  border-radius: 16px;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: 0.3s;
   cursor: pointer;
   position: relative;
-}
-
-.game-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, #7C3AED, transparent);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  margin: 0 auto;
 }
 
 .game-card:hover {
-  transform: translateY(-12px) scale(1.02);
-  box-shadow: 
-    0 0 30px rgba(0, 229, 255, 0.4),
-    0 20px 40px rgba(0, 0, 0, 0.4),
-    0 0 60px rgba(124, 58, 237, 0.2);
-  border-color: #00E5FF;
-}
-
-.game-card:hover::before {
-  opacity: 1;
+  transform: translateY(-8px);
+  box-shadow: 0 0 25px #00E5FF;
 }
 
 /* Card Image */
@@ -124,23 +59,11 @@
   width: 100%;
   height: 280px;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.3s ease;
 }
 
 .game-card:hover .card-image img {
-  transform: scale(1.15);
-}
-
-/* Image overlay gradient */
-.card-image::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 80px;
-  background: linear-gradient(to top, #141A2E, transparent);
-  pointer-events: none;
+  transform: scale(1.08);
 }
 
 /* No Image */
@@ -157,12 +80,12 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.3s ease;
 }
 
 .game-card:hover .card-overlay {
@@ -171,143 +94,55 @@
 
 .play-text {
   font-family: 'VT323', monospace;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   color: #FFFFFF;
   text-transform: uppercase;
-  letter-spacing: 3px;
-  padding: 14px 32px;
-  border: 2px solid #22C55E;
-  border-radius: 12px;
-  background: rgba(34, 197, 94, 0.9);
-  transform: scale(0.8) translateY(20px);
-  opacity: 0;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
-}
-
-.game-card:hover .play-text {
-  opacity: 1;
-  transform: scale(1) translateY(0);
+  letter-spacing: 2px;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 8px;
+  background: #22C55E;
+  transition: all 0.3s ease;
 }
 
 .play-text:hover {
   background: #16A34A;
-  border-color: #16A34A;
-  box-shadow: 0 0 30px rgba(34, 197, 94, 0.7);
 }
 
 /* Card Info */
 .card-info {
   padding: 20px;
   text-align: center;
-  background: linear-gradient(180deg, #141A2E 0%, #0f1220 100%);
-  position: relative;
-}
-
-.card-info::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 20%;
-  right: 20%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #7C3AED, transparent);
+  background: #141A2E;
 }
 
 .card-name {
   font-family: 'Press Start 2P', cursive;
-  font-size: 0.6rem;
+  font-size: 0.65rem;
   color: #FFD700;
-  line-height: 1.8;
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+  line-height: 1.6;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
 }
 
-/* Responsive */
-@media (max-width: 1400px) {
-  .games-grid {
-    grid-template-columns: repeat(3, 320px);
-    max-width: 1100px;
-  }
-  
-  .library-title {
-    font-size: 1.6rem;
+/* Responsive - Tablet */
+@media (max-width: 1024px) {
+  .game-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 1100px) {
-  .games-grid {
-    grid-template-columns: repeat(2, 300px);
-    max-width: 700px;
-    gap: 25px;
-  }
-  
-  .game-card {
-    width: 300px;
-    height: 400px;
-  }
-  
-  .card-image {
-    height: 260px;
-  }
-  
-  .card-image img {
-    height: 260px;
-  }
-}
-
-@media (max-width: 768px) {
-  .games-grid {
-    grid-template-columns: repeat(2, 260px);
-    gap: 20px;
-    padding: 20px;
-  }
-  
-  .game-card {
-    width: 260px;
-    height: 360px;
-  }
-  
-  .card-image {
-    height: 220px;
-  }
-  
-  .card-image img {
-    height: 220px;
+/* Responsive - Mobile */
+@media (max-width: 600px) {
+  .game-grid {
+    grid-template-columns: repeat(1, 1fr);
   }
   
   .library-title {
     font-size: 1.2rem;
-    letter-spacing: 4px;
-  }
-  
-  .play-text {
-    font-size: 1.4rem;
-    padding: 10px 24px;
-  }
-}
-
-@media (max-width: 620px) {
-  .games-grid {
-    grid-template-columns: 1fr;
-    max-width: 320px;
   }
   
   .game-card {
     width: 100%;
     max-width: 320px;
-    height: 380px;
-    margin: 0 auto;
-  }
-  
-  .card-image {
-    height: 240px;
-  }
-  
-  .card-image img {
-    height: 240px;
-  }
-  
-  .library-title {
-    font-size: 1rem;
   }
 }

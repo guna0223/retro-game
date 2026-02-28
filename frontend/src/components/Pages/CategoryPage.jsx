@@ -135,7 +135,7 @@ function CategoryPage() {
         <h2 className="library-title">{categoryName}</h2>
 
         {games.length > 0 ? (
-          <div className="games-grid">
+          <div className="game-grid">
             {games.map((game) => (
               <GameCard
                 key={game.id}

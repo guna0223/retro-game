@@ -130,7 +130,7 @@ function SearchResults() {
         </h2>
 
         {results.length > 0 ? (
-          <div className="games-grid">
+          <div className="game-grid">
             {results.map((game) => (
               <GameCard
                 key={game.id}
