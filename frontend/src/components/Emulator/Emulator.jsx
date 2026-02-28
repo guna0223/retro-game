@@ -17,13 +17,14 @@ const GAMES = [
     name: "Donkey Kong Country",
     file: "Donkey Kong Country (U) (V1.2) [!].smc",
     color: "#f39c12",
-    image : "monkey.jpg"
+    image: "monkey.jpg"
   },
   {
     id: "top-gear",
     name: "Top Gear",
     file: "Top Gear (USA).sfc",
-    color: "#3498db"
+    color: "#3498db",
+    image : "topgear.jpeg"
   }
 ];
 
@@ -38,18 +39,27 @@ const CONTROLS = [
 
 function Emulator() {
   const [selectedGame, setSelectedGame] = useState(null);
+  const [gameStarted, setGameStarted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Play a game
-  const playGame = useCallback((game) => {
+  // Select a game (show preview)
+  const selectGame = useCallback((game) => {
     setSelectedGame(game);
+    setGameStarted(false);
+  }, []);
+
+  // Start the game
+  const startGame = useCallback(() => {
+    if (!selectedGame) return;
+    
+    setGameStarted(true);
     setIsLoading(true);
 
     // Configure EmulatorJS
     window.EJS_player = "#game";
     window.EJS_core = "snes";
     window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
-    window.EJS_gameUrl = `/games/${game.file}`;
+    window.EJS_gameUrl = `/games/${selectedGame.file}`;
 
     // Clear previous
     const gameDiv = document.getElementById("game");
@@ -78,11 +88,12 @@ function Emulator() {
     };
 
     document.body.appendChild(script);
-  }, []);
+  }, [selectedGame]);
 
   // Go back to game selection
   const goBack = useCallback(() => {
     setSelectedGame(null);
+    setGameStarted(false);
     const gameDiv = document.getElementById("game");
     if (gameDiv) {
       gameDiv.innerHTML = "";
@@ -96,14 +107,14 @@ function Emulator() {
         <div className="arcade-bg"></div>
         
         <div className="game-library">
-          <h2 className="library-title">SELECT GAME</h2>
+          <h2 className="library-title">RETRO ARCADE</h2>
           
           <div className="games-grid">
             {GAMES.map((game) => (
               <GameCard 
                 key={game.id} 
                 game={game} 
-                onPlay={playGame} 
+                onPlay={selectGame} 
               />
             ))}
           </div>
@@ -112,7 +123,7 @@ function Emulator() {
     );
   }
 
-  // Show emulator
+  // Show emulator with preview
   return (
     <div className="arcade-container">
       <div className="arcade-bg"></div>
@@ -123,12 +134,35 @@ function Emulator() {
 
       <div className="emulator-area">
         <div className="emulator-screen">
+          {/* Game Preview - shown before starting */}
+          {!gameStarted && (
+            <div className="game-preview">
+              {selectedGame.image ? (
+                <img 
+                  src={`/game-images/${selectedGame.image}`} 
+                  alt={selectedGame.name}
+                  className="preview-image"
+                />
+              ) : (
+                <div className="preview-placeholder">
+                  <span>{selectedGame.name}</span>
+                </div>
+              )}
+              <button className="start-btn" onClick={startGame}>
+                START GAME
+              </button>
+            </div>
+          )}
+          
+          {/* Loading */}
           {isLoading && (
             <div className="loading-overlay">
               <div className="loading-spinner"></div>
               <p>Loading {selectedGame.name}...</p>
             </div>
           )}
+          
+          {/* Emulator */}
           <div id="game" className="emulator-game"></div>
         </div>
       </div>

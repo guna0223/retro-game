@@ -4,7 +4,7 @@ import "../css/GameCard.css";
 function GameCard({ game, onPlay }) {
   const [imageError, setImageError] = useState(false);
   
-  // Build image path
+  // Build image path - use game-image folder
   const imagePath = game.image ? `/game-image/${game.image}` : null;
 
   return (
@@ -23,12 +23,13 @@ function GameCard({ game, onPlay }) {
         ) : (
           <div className="no-image"></div>
         )}
+        <div className="card-overlay">
+          <span className="play-text">PLAY</span>
+        </div>
       </div>
       <div className="card-info">
         <span className="card-name">{game.name}</span>
-        <span className="card-play">PLAY</span>
       </div>
-      <div className="card-glow"></div>
     </button>
   );
 }
