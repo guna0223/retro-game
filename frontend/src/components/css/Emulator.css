@@ -463,3 +463,97 @@
     letter-spacing: 4px;
   }
 }
+
+/* JioHotstar-style Category Sections */
+.category-sections {
+  text-align: left;
+  padding: 0 30px;
+  position: relative;
+  z-index: 1;
+}
+
+.category-section {
+  margin-bottom: 45px;
+}
+
+.section-header {
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-family: 'VT323', monospace;
+  font-size: 1.8rem;
+  color: #fff;
+  border-left: 4px solid #3DAD8B;
+  padding-left: 15px;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.section-games {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 10px 5px 20px 5px;
+  scroll-behavior: smooth;
+}
+
+.section-games::-webkit-scrollbar {
+  height: 8px;
+}
+
+.section-games::-webkit-scrollbar-track {
+  background: rgba(61, 173, 139, 0.1);
+  border-radius: 10px;
+}
+
+.section-games::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #3DAD8B, #2D8568);
+  border-radius: 10px;
+}
+
+.section-games::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #4DC99B, #3DAD8B);
+}
+
+.game-card-wrapper {
+  flex: 0 0 200px;
+  scroll-snap-align: start;
+}
+
+.game-card-wrapper .game-card {
+  height: 280px;
+}
+
+@media (max-width: 768px) {
+  .category-sections {
+    padding: 0 15px;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .game-card-wrapper {
+    flex: 0 0 160px;
+  }
+  
+  .game-card-wrapper .game-card {
+    height: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.3rem;
+  }
+  
+  .game-card-wrapper {
+    flex: 0 0 140px;
+  }
+  
+  .game-card-wrapper .game-card {
+    height: 200px;
+  }
+}

@@ -3,11 +3,15 @@ import { Link, useNavigate } from "react-router-dom";
 import "../css/Navbar.css";
 
 const CATEGORIES = [
-    { id: "spiderman", name: "Spider-Man", path: "/category/spiderman" },
-    { id: "pokemon", name: "Pokemon", path: "/category/pokemon" },
-    { id: "ps1", name: "PS1", path: "/category/ps1" },
+    { id: "action", name: "Action", path: "/category/action" },
+    { id: "racing", name: "Racing", path: "/category/racing" },
+    { id: "fighting", name: "Fighting", path: "/category/fighting" },
+    { id: "rpg", name: "RPG", path: "/category/rpg" },
+    { id: "adventure", name: "Adventure", path: "/category/adventure" },
     { id: "snes", name: "SNES", path: "/category/snes" },
-    { id: "gba", name: "GBA", path: "/category/gba" }
+    { id: "gba", name: "GBA", path: "/category/gba" },
+    { id: "nds", name: "NDS", path: "/category/nds" },
+    { id: "nes", name: "NES", path: "/category/nes" }
 ];
 
 function Navbar() {

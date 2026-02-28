@@ -49,16 +49,16 @@ const ALL_GAMES = [
     color: "#e74c3c",
     image: "spiderman1.jpeg",
     system: "snes",
-    category: "spiderman"
+    category: "action"
   },
   {
     id: "6",
-    name: "Spider-Man-2",
+    name: "Spider-Man 2",
     file: "Spiderman2.gba",
     color: "#e74c3c",
     image: "spiderman2.jpeg",
     system: "gba",
-    category: "spiderman"
+    category: "action"
   },
   {
     id: "7",
@@ -67,44 +67,48 @@ const ALL_GAMES = [
     color: "#e74c3c",
     image: "spiderman2.jpeg",
     system: "gba",
-    category: "pokemon"
+    category: "rpg"
   },
   {
     id: "8",
-    name: "Mario Kart",
-    file: "Mario Kart.sfc",
+    name: "Mario Kart DS",
+    file: "Mario Kart.nds",
     color: "#e74c3c",
-    image: "mario.jpg",
-    system: "snes",
+    image: "mario-kart.jpg",
+    system: "nds",
     category: "racing"
   },
   {
     id: "9",
-    name: "Pokemon Emerald",
-    file: "Pokemon Emerald.gba",
-    color: "#2ecc71",
-    image: "spiderman2.jpeg",
-    system: "gba",
-    category: "pokemon"
+    name: "New Super Mario Bros",
+    file: "New Super Mario Bros.nds",
+    color: "#e74c3c",
+    image: "new-mario.jpg",
+    system: "nds",
+    category: "action"
   },
   {
     id: "10",
-    name: "Spider-Man PS1",
-    file: "Spider-Man PS1.bin",
-    color: "#e74c3c",
-    image: "spiderman1.jpeg",
-    system: "ps1",
-    category: "spiderman"
+    name: "Home Alone 2",
+    file: "Home Alone 2.nes",
+    color: "#27ae60",
+    image: "home-alone-2.jpg",
+    system: "nes",
+    category: "adventure"
   }
 ];
 
 // Category info
 const CATEGORIES = {
-  spiderman: { name: "Spider-Man Games", games: ["spiderman"] },
-  pokemon: { name: "Pokemon Games", games: ["pokemon"] },
-  ps1: { name: "PS1 Games", games: ["ps1"] },
+  action: { name: "Action Games", games: ["action"] },
+  racing: { name: "Racing Games", games: ["racing"] },
+  fighting: { name: "Fighting Games", games: ["fighting"] },
+  rpg: { name: "RPG Games", games: ["rpg"] },
+  adventure: { name: "Adventure Games", games: ["adventure"] },
   snes: { name: "SNES Games", games: ["snes"] },
-  gba: { name: "GBA Games", games: ["gba"] }
+  gba: { name: "GBA Games", games: ["gba"] },
+  nds: { name: "NDS Games", games: ["nds"] },
+  nes: { name: "NES Games", games: ["nes"] }
 };
 
 function CategoryPage() {

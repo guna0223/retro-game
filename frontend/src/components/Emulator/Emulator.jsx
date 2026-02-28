@@ -14,6 +14,15 @@ const CATEGORIES = [
   { id: "rpg", name: "RPG" }
 ];
 
+// Category sections for JioHotstar-style display
+const CATEGORY_SECTIONS = [
+  { id: "action", name: "Action Games", color: "#e74c3c" },
+  { id: "racing", name: "Racing Games", color: "#3498db" },
+  { id: "fighting", name: "Fighting Games", color: "#9b59b6" },
+  { id: "adventure", name: "Adventure Games", color: "#27ae60" },
+  { id: "rpg", name: "RPG Games", color: "#f39c12" }
+];
+
 // Game library
 const GAMES = [
   {
@@ -63,7 +72,7 @@ const GAMES = [
   },
   {
     id: "6",
-    name: "Spider-Man-2",
+    name: "Spider-Man 2",
     file: "Spiderman2.gba",
     color: "#e74c3c",
     image: "spiderman2.jpeg",
@@ -72,7 +81,7 @@ const GAMES = [
   },
   {
     id: "7",
-    name: "Pokemon",
+    name: "Pokemon FireRed",
     file: "Pokemon.gba",
     color: "#e74c3c",
     image: "spiderman2.jpeg",
@@ -81,7 +90,7 @@ const GAMES = [
   },
   {
     id: "8",
-    name: "Super Mario",
+    name: "New Super Mario Bros",
     file: "New Super Mario Bros.nds",
     color: "#e74c3c",
     image: "new-mario.jpg",
@@ -90,22 +99,22 @@ const GAMES = [
   },
   {
     id: "9",
-    name: "Mario Kart DS ",
+    name: "Mario Kart DS",
     file: "Mario Kart.nds",
     color: "#e74c3c",
     image: "mario-kart.jpg",
     system: "nds",
-    category: "action"
+    category: "racing"
   },
   {
     id: "10",
-    name: "Home Alon 2 ",
+    name: "Home Alone 2",
     file: "Home Alone 2.nes",
-    color: "#e74c3c",
+    color: "#27ae60",
     image: "home-alone-2.jpg",
-    system: "nds",
-    category: "action"
-  },
+    system: "nes",
+    category: "adventure"
+  }
 ];
 
 
@@ -277,7 +286,7 @@ function Emulator() {
     setGameStarted(false);
   }, []);
 
-  // Show game selection grid
+  // Show game selection grid with JioHotstar-style category sections
   if (!selectedGame) {
     return (
       <div className="arcade-container">
@@ -286,14 +295,32 @@ function Emulator() {
         <div className="game-library">
           <h2 className="library-title"><i className="fas fa-gamepad"></i> RETRO ARCADE</h2>
 
-          <div className="game-grid">
-            {GAMES.map((game) => (
-              <GameCard
-                key={game.id}
-                game={game}
-                onPlay={selectGame}
-              />
-            ))}
+          {/* JioHotstar-style category sections */}
+          <div className="category-sections">
+            {CATEGORY_SECTIONS.map((section) => {
+              const sectionGames = GAMES.filter(game => game.category === section.id);
+              if (sectionGames.length === 0) return null;
+              
+              return (
+                <div key={section.id} className="category-section">
+                  <div className="section-header">
+                    <h3 className="section-title" style={{ borderLeftColor: section.color }}>
+                      {section.name}
+                    </h3>
+                  </div>
+                  <div className="section-games horizontal-scroll">
+                    {sectionGames.map((game) => (
+                      <div key={game.id} className="game-card-wrapper">
+                        <GameCard
+                          game={game}
+                          onPlay={selectGame}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
