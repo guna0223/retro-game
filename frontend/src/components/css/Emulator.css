@@ -27,11 +27,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
-    radial-gradient(ellipse at 50% 0%, rgba(155, 89, 182, 0.15) 0%, transparent 50%),
-    radial-gradient(ellipse at 0% 100%, rgba(52, 152, 219, 0.1) 0%, transparent 40%),
-    radial-gradient(ellipse at 100% 100%, rgba(255, 0, 255, 0.1) 0%, transparent 40%),
-    linear-gradient(180deg, #050508 0%, #0a0a12 50%, #050508 100%);
+  background: #0B0F1A;
   z-index: -1;
 }
 
@@ -74,92 +70,6 @@
   50% { 
     text-shadow: 0 0 15px var(--neon-cyan), 0 0 30px var(--neon-cyan), 0 0 60px var(--neon-cyan);
   }
-}
-
-/* Games Grid */
-.games-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 25px;
-  padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-/* Game Card */
-.game-card {
-  position: relative;
-  background: var(--card-bg);
-  border: 3px solid var(--accent, var(--primary));
-  border-radius: 16px;
-  padding: 20px;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  overflow: hidden;
-}
-
-.game-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  border-color: var(--neon-cyan);
-  box-shadow: 
-    0 15px 40px rgba(0, 255, 255, 0.3),
-    0 0 20px rgba(0, 255, 255, 0.2),
-    inset 0 0 30px rgba(0, 255, 255, 0.1);
-}
-
-.card-image {
-  width: 90px;
-  height: 90px;
-  background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid rgba(255, 255, 255, 0.1);
-}
-
-.card-icon {
-  font-size: 40px;
-}
-
-.card-name {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 0.6rem;
-  color: var(--text);
-  text-align: center;
-  line-height: 1.4;
-}
-
-.card-play {
-  font-family: 'VT323', monospace;
-  font-size: 1rem;
-  color: var(--neon-green);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-.card-glow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: radial-gradient(circle, var(--accent, var(--primary)) 0%, transparent 70%);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: all 0.5s;
-  z-index: 0;
-}
-
-.game-card:hover .card-glow {
-  width: 200%;
-  height: 200%;
-  opacity: 0.3;
 }
 
 /* Back Button */
