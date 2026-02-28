@@ -6,6 +6,18 @@ function GameCard({ game, onPlay }) {
   
   // Build image path - use game-image folder
   const imagePath = game.image ? `/game-image/${game.image}` : null;
+  
+  // Get system display name
+  const getSystemName = (system) => {
+    const systems = {
+      snes: 'SNES',
+      gba: 'GBA',
+      nds: 'NDS',
+      nes: 'NES',
+      ps1: 'PS1'
+    };
+    return systems[system] || system.toUpperCase();
+  };
 
   return (
     <button 
@@ -26,9 +38,13 @@ function GameCard({ game, onPlay }) {
         <div className="card-overlay">
           <span className="play-text"><i className="fas fa-play"></i> PLAY</span>
         </div>
-      </div>
-      <div className="card-info">
-        <span className="card-name">{game.name}</span>
+        <div className="card-badge">
+          {getSystemName(game.system)}
+        </div>
+        <div className="card-title-overlay">
+          <span className="card-name">{game.name}</span>
+          <span className="card-category">{game.category}</span>
+        </div>
       </div>
     </button>
   );

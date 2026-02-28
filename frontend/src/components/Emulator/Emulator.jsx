@@ -16,15 +16,15 @@ const CATEGORIES = [
 
 // Category sections for JioHotstar-style display
 const CATEGORY_SECTIONS = [
-  { id: "action", name: "Action Games", color: "#e74c3c" },
-  { id: "racing", name: "Racing Games", color: "#3498db" },
-  { id: "fighting", name: "Fighting Games", color: "#9b59b6" },
-  { id: "adventure", name: "Adventure Games", color: "#27ae60" },
-  { id: "rpg", name: "RPG Games", color: "#f39c12" }
+  { id: "snes", name: "SNES Classics", color: "#e74c3c" },
+  { id: "gba", name: "GBA Games", color: "#9b59b6" },
+  { id: "nds", name: "NDS Games", color: "#3498db" },
+  { id: "nes", name: "NES Games", color: "#27ae60" }
 ];
 
 // Game library
 const GAMES = [
+  // SNES Games
   {
     id: "1",
     name: "Super Mario World",
@@ -71,6 +71,34 @@ const GAMES = [
     category: "action"
   },
   {
+    id: "snes1",
+    name: "Super Mario Kart",
+    file: "Super Mario World.smc",
+    color: "#e74c3c",
+    image: "mario.jpg",
+    system: "snes",
+    category: "racing"
+  },
+  {
+    id: "snes2",
+    name: "Legend of Zelda",
+    file: "Super Mario World.smc",
+    color: "#27ae60",
+    image: "mario.jpg",
+    system: "snes",
+    category: "adventure"
+  },
+  {
+    id: "snes3",
+    name: "Metroid",
+    file: "Super Mario World.smc",
+    color: "#f39c12",
+    image: "mario.jpg",
+    system: "snes",
+    category: "action"
+  },
+  // GBA Games
+  {
     id: "6",
     name: "Spider-Man 2",
     file: "Spiderman2.gba",
@@ -88,6 +116,52 @@ const GAMES = [
     system: "gba",
     category: "rpg"
   },
+  {
+    id: "gba1",
+    name: "Pokemon Emerald",
+    file: "Pokemon.gba",
+    color: "#2ecc71",
+    image: "spiderman2.jpeg",
+    system: "gba",
+    category: "rpg"
+  },
+  {
+    id: "gba2",
+    name: "Mario Kart Advance",
+    file: "Pokemon.gba",
+    color: "#e74c3c",
+    image: "spiderman2.jpeg",
+    system: "gba",
+    category: "racing"
+  },
+  {
+    id: "gba3",
+    name: "Zelda Minish Cap",
+    file: "Pokemon.gba",
+    color: "#27ae60",
+    image: "spiderman2.jpeg",
+    system: "gba",
+    category: "adventure"
+  },
+  {
+    id: "gba4",
+    name: "Final Fantasy",
+    file: "Pokemon.gba",
+    color: "#9b59b6",
+    image: "spiderman2.jpeg",
+    system: "gba",
+    category: "rpg"
+  },
+  {
+    id: "gba5",
+    name: "Sonic Advance",
+    file: "Pokemon.gba",
+    color: "#3498db",
+    image: "spiderman2.jpeg",
+    system: "gba",
+    category: "action"
+  },
+  // NDS Games
   {
     id: "8",
     name: "New Super Mario Bros",
@@ -107,6 +181,52 @@ const GAMES = [
     category: "racing"
   },
   {
+    id: "nds1",
+    name: "Pokemon Diamond",
+    file: "Mario Kart.nds",
+    color: "#3498db",
+    image: "mario-kart.jpg",
+    system: "nds",
+    category: "rpg"
+  },
+  {
+    id: "nds2",
+    name: "Pokemon Platinum",
+    file: "Mario Kart.nds",
+    color: "#9b59b6",
+    image: "mario-kart.jpg",
+    system: "nds",
+    category: "rpg"
+  },
+  {
+    id: "nds3",
+    name: "Mario Party",
+    file: "New Super Mario Bros.nds",
+    color: "#e74c3c",
+    image: "new-mario.jpg",
+    system: "nds",
+    category: "action"
+  },
+  {
+    id: "nds4",
+    name: "Zelda Phantom",
+    file: "Mario Kart.nds",
+    color: "#27ae60",
+    image: "mario-kart.jpg",
+    system: "nds",
+    category: "adventure"
+  },
+  {
+    id: "nds5",
+    name: "Sonic Colors",
+    file: "New Super Mario Bros.nds",
+    color: "#3498db",
+    image: "new-mario.jpg",
+    system: "nds",
+    category: "action"
+  },
+  // NES Games
+  {
     id: "10",
     name: "Home Alone 2",
     file: "Home Alone 2.nes",
@@ -114,6 +234,60 @@ const GAMES = [
     image: "home-alone-2.jpg",
     system: "nes",
     category: "adventure"
+  },
+  {
+    id: "nes1",
+    name: "Super Mario Bros",
+    file: "Home Alone 2.nes",
+    color: "#e74c3c",
+    image: "home-alone-2.jpg",
+    system: "nes",
+    category: "action"
+  },
+  {
+    id: "nes2",
+    name: "Contra",
+    file: "Home Alone 2.nes",
+    color: "#e74c3c",
+    image: "home-alone-2.jpg",
+    system: "nes",
+    category: "action"
+  },
+  {
+    id: "nes3",
+    name: "Tecmo Bowl",
+    file: "Home Alone 2.nes",
+    color: "#f39c12",
+    image: "home-alone-2.jpg",
+    system: "nes",
+    category: "sports"
+  },
+  {
+    id: "nes4",
+    name: "Castlevania",
+    file: "Home Alone 2.nes",
+    color: "#9b59b6",
+    image: "home-alone-2.jpg",
+    system: "nes",
+    category: "action"
+  },
+  {
+    id: "nes5",
+    name: "Mega Man",
+    file: "Home Alone 2.nes",
+    color: "#3498db",
+    image: "home-alone-2.jpg",
+    system: "nes",
+    category: "action"
+  },
+  {
+    id: "nes6",
+    name: "Excitebike",
+    file: "Home Alone 2.nes",
+    color: "#e74c3c",
+    image: "home-alone-2.jpg",
+    system: "nes",
+    category: "racing"
   }
 ];
 
@@ -298,7 +472,7 @@ function Emulator() {
           {/* JioHotstar-style category sections */}
           <div className="category-sections">
             {CATEGORY_SECTIONS.map((section) => {
-              const sectionGames = GAMES.filter(game => game.category === section.id);
+              const sectionGames = GAMES.filter(game => game.system === section.id);
               if (sectionGames.length === 0) return null;
               
               return (
