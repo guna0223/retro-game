@@ -7,6 +7,9 @@ function GameCard({ game, onPlay }) {
   // Build image path - use game-image folder
   const imagePath = game.image ? `/game-image/${game.image}` : null;
   
+  // Check if we should show title instead of image
+  const showTitleOnly = !imagePath || imageError;
+  
   // Get system display name
   const getSystemName = (system) => {
     const systems = {
@@ -26,14 +29,16 @@ function GameCard({ game, onPlay }) {
       style={{ "--accent": game.color }}
     >
       <div className="card-image">
-        {imagePath && !imageError ? (
+        {showTitleOnly ? (
+          <div className="no-image" style={{ background: game.color || '#1a1a2e' }}>
+            <span className="no-image-title">{game.name}</span>
+          </div>
+        ) : (
           <img 
             src={imagePath} 
             alt={game.name}
             onError={() => setImageError(true)}
           />
-        ) : (
-          <div className="no-image"></div>
         )}
         <div className="card-overlay">
           <span className="play-text"><i className="fas fa-play"></i> PLAY</span>

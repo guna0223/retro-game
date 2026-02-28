@@ -72,6 +72,20 @@
   width: 100%;
   height: 280px;
   background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.no-image-title {
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  word-wrap: break-word;
+  max-width: 100%;
 }
 
 /* Overlay with Play */

@@ -1,16 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { NAVBAR_CATEGORIES } from "../Data/Data";
 import "../css/Navbar.css";
-
-const CATEGORIES = [
-    { id: "action", name: "Action", path: "/category/action" },
-    { id: "racing", name: "Racing", path: "/category/racing" },
-    { id: "sports", name: "Sports", path: "/category/sports" },
-    { id: "rpg", name: "RPG", path: "/category/rpg" },
-    { id: "fighting", name: "Fighting", path: "/category/fighting" },
-    { id: "adventure", name: "Adventure", path: "/category/adventure" },
-    { id: "horror", name: "Horror", path: "/category/horror" }
-];
 
 function Navbar() {
     const [searchQuery, setSearchQuery] = useState("");
@@ -52,7 +43,7 @@ function Navbar() {
 
                 {showCategories && (
                     <div className="categories-panel">
-                        {CATEGORIES.map((category) => (
+                        {NAVBAR_CATEGORIES.map((category) => (
                             <Link
                                 key={category.id}
                                 to={category.path}
