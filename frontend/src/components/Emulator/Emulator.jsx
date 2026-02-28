@@ -9,22 +9,27 @@ const CATEGORIES = [
   { id: "all", name: "All Games" },
   { id: "action", name: "Action" },
   { id: "racing", name: "Racing" },
+  { id: "sports", name: "Sports" },
+  { id: "rpg", name: "RPG" },
   { id: "fighting", name: "Fighting" },
   { id: "adventure", name: "Adventure" },
-  { id: "rpg", name: "RPG" }
+  { id: "horror", name: "Horror" }
 ];
 
 // Category sections for JioHotstar-style display
 const CATEGORY_SECTIONS = [
-  { id: "snes", name: "SNES Classics", color: "#e74c3c" },
-  { id: "gba", name: "GBA Games", color: "#9b59b6" },
-  { id: "nds", name: "NDS Games", color: "#3498db" },
-  { id: "nes", name: "NES Games", color: "#27ae60" }
+  { id: "action", name: "Action Games", color: "#e74c3c" },
+  { id: "racing", name: "Racing Games", color: "#3498db" },
+  { id: "sports", name: "Sports Games", color: "#27ae60" },
+  { id: "rpg", name: "RPG Games", color: "#9b59b6" },
+  { id: "fighting", name: "Fighting Games", color: "#f39c12" },
+  { id: "adventure", name: "Adventure Games", color: "#1abc9c" },
+  { id: "horror", name: "Horror Games", color: "#e74c3c" }
 ];
 
-// Game library
+// Game library with all games
 const GAMES = [
-  // SNES Games
+  // Action Games
   {
     id: "1",
     name: "Super Mario World",
@@ -44,24 +49,6 @@ const GAMES = [
     category: "action"
   },
   {
-    id: "3",
-    name: "Top Gear",
-    file: "Top Gear (USA).sfc",
-    color: "#3498db",
-    image: "topgear.jpeg",
-    system: "snes",
-    category: "racing"
-  },
-  {
-    id: "4",
-    name: "Street Fighter Two",
-    file: "Street Fighter Two .smc",
-    color: "#e74c3c",
-    image: "Street Fighter Two.jpg",
-    system: "snes",
-    category: "fighting"
-  },
-  {
     id: "5",
     name: "Spider-Man",
     file: "Spider-Man.sfc",
@@ -70,34 +57,6 @@ const GAMES = [
     system: "snes",
     category: "action"
   },
-  {
-    id: "snes1",
-    name: "Super Mario Kart",
-    file: "Super Mario World.smc",
-    color: "#e74c3c",
-    image: "mario.jpg",
-    system: "snes",
-    category: "racing"
-  },
-  {
-    id: "snes2",
-    name: "Legend of Zelda",
-    file: "Super Mario World.smc",
-    color: "#27ae60",
-    image: "mario.jpg",
-    system: "snes",
-    category: "adventure"
-  },
-  {
-    id: "snes3",
-    name: "Metroid",
-    file: "Super Mario World.smc",
-    color: "#f39c12",
-    image: "mario.jpg",
-    system: "snes",
-    category: "action"
-  },
-  // GBA Games
   {
     id: "6",
     name: "Spider-Man 2",
@@ -108,61 +67,6 @@ const GAMES = [
     category: "action"
   },
   {
-    id: "7",
-    name: "Pokemon FireRed",
-    file: "Pokemon.gba",
-    color: "#e74c3c",
-    image: "spiderman2.jpeg",
-    system: "gba",
-    category: "rpg"
-  },
-  {
-    id: "gba1",
-    name: "Pokemon Emerald",
-    file: "Pokemon.gba",
-    color: "#2ecc71",
-    image: "spiderman2.jpeg",
-    system: "gba",
-    category: "rpg"
-  },
-  {
-    id: "gba2",
-    name: "Mario Kart Advance",
-    file: "Pokemon.gba",
-    color: "#e74c3c",
-    image: "spiderman2.jpeg",
-    system: "gba",
-    category: "racing"
-  },
-  {
-    id: "gba3",
-    name: "Zelda Minish Cap",
-    file: "Pokemon.gba",
-    color: "#27ae60",
-    image: "spiderman2.jpeg",
-    system: "gba",
-    category: "adventure"
-  },
-  {
-    id: "gba4",
-    name: "Final Fantasy",
-    file: "Pokemon.gba",
-    color: "#9b59b6",
-    image: "spiderman2.jpeg",
-    system: "gba",
-    category: "rpg"
-  },
-  {
-    id: "gba5",
-    name: "Sonic Advance",
-    file: "Pokemon.gba",
-    color: "#3498db",
-    image: "spiderman2.jpeg",
-    system: "gba",
-    category: "action"
-  },
-  // NDS Games
-  {
     id: "8",
     name: "New Super Mario Bros",
     file: "New Super Mario Bros.nds",
@@ -170,6 +74,107 @@ const GAMES = [
     image: "new-mario.jpg",
     system: "nds",
     category: "action"
+  },
+  {
+    id: "3ninjas",
+    name: "3 Ninjas Kick",
+    file: "3 Ninjas Kick.smc",
+    color: "#e74c3c",
+    image: "mario.jpg",
+    system: "snes",
+    category: "action"
+  },
+  {
+    id: "aero2",
+    name: "Aero the Acro-Bat 2",
+    file: "Aero the Acro-Bat 2.smc",
+    color: "#3498db",
+    image: "mario.jpg",
+    system: "snes",
+    category: "action"
+  },
+  {
+    id: "chuckrock",
+    name: "Chuck Rock",
+    file: "Chuck Rock (U) [!].smc",
+    color: "#f39c12",
+    image: "monkey.jpg",
+    system: "snes",
+    category: "action"
+  },
+  {
+    id: "crashdummies",
+    name: "Incredible Crash Dummies",
+    file: "Incredible Crash Dummies, The (U) [!].smc",
+    color: "#e74c3c",
+    image: "mario.jpg",
+    system: "snes",
+    category: "action"
+  },
+  {
+    id: "izzyquest",
+    name: "Izzy's Quest",
+    file: "Izzy's Quest for the Olympic Rings (U) [!].smc",
+    color: "#9b59b6",
+    image: "mario.jpg",
+    system: "snes",
+    category: "action"
+  },
+  {
+    id: "lobo",
+    name: "LOBO",
+    file: "LOBO.sfc",
+    color: "#e74c3c",
+    image: "mario.jpg",
+    system: "snes",
+    category: "action"
+  },
+  {
+    id: "spankys",
+    name: "Spanky's Quest",
+    file: "Spanky's Quest (U) [!].smc",
+    color: "#3498db",
+    image: "mario.jpg",
+    system: "snes",
+    category: "action"
+  },
+  {
+    id: "spidermancarnage",
+    name: "Spider-Man Maximum Carnage",
+    file: "Spider-Man & Venom - Maximum Carnage (U) [!].smc",
+    color: "#e74c3c",
+    image: "spiderman1.jpeg",
+    system: "snes",
+    category: "action"
+  },
+  {
+    id: "spirou",
+    name: "Spirou",
+    file: "Spirou (E) (M4) [!].smc",
+    color: "#27ae60",
+    image: "mario.jpg",
+    system: "snes",
+    category: "action"
+  },
+  {
+    id: "blockkuz",
+    name: "Block Kuzush",
+    file: "Block Kuzush.smc",
+    color: "#3498db",
+    image: "mario.jpg",
+    system: "snes",
+    category: "action"
+  },
+  
+  // Racing Games
+  {
+    id: "3",
+    name: "Top Gear",
+    file: "Top Gear (USA).sfc",
+    color: "#3498db",
+    image: "topgear.jpeg",
+    system: "snes",
+    category: "racing"
   },
   {
     id: "9",
@@ -181,51 +186,202 @@ const GAMES = [
     category: "racing"
   },
   {
-    id: "nds1",
-    name: "Pokemon Diamond",
-    file: "Mario Kart.nds",
+    id: "dirttrax",
+    name: "Dirt Trax FX",
+    file: "Dirt Trax FX (U) [!].smc",
+    color: "#f39c12",
+    image: "topgear.jpeg",
+    system: "snes",
+    category: "racing"
+  },
+  {
+    id: "espnspeed",
+    name: "ESPN Speedworld",
+    file: "ESPN Speedworld (U) [!].smc",
     color: "#3498db",
-    image: "mario-kart.jpg",
-    system: "nds",
-    category: "rpg"
+    image: "topgear.jpeg",
+    system: "snes",
+    category: "racing"
   },
   {
-    id: "nds2",
-    name: "Pokemon Platinum",
-    file: "Mario Kart.nds",
-    color: "#9b59b6",
-    image: "mario-kart.jpg",
-    system: "nds",
-    category: "rpg"
-  },
-  {
-    id: "nds3",
-    name: "Mario Party",
-    file: "New Super Mario Bros.nds",
-    color: "#e74c3c",
-    image: "new-mario.jpg",
-    system: "nds",
-    category: "action"
-  },
-  {
-    id: "nds4",
-    name: "Zelda Phantom",
-    file: "Mario Kart.nds",
+    id: "excitebike",
+    name: "Excitebike",
+    file: "Excitebike - Bunbun Mario Battle - Stadium 4 (Japan) (BS SoundLink).sfc",
     color: "#27ae60",
-    image: "mario-kart.jpg",
-    system: "nds",
-    category: "adventure"
+    image: "topgear.jpeg",
+    system: "snes",
+    category: "racing"
+  },
+  
+  // Sports Games
+  {
+    id: "bassclassic",
+    name: "BASS Masters Classic",
+    file: "BASS Masters Classic.sfc",
+    color: "#27ae60",
+    image: "topgear.jpeg",
+    system: "snes",
+    category: "sports"
   },
   {
-    id: "nds5",
-    name: "Sonic Colors",
-    file: "New Super Mario Bros.nds",
-    color: "#3498db",
-    image: "new-mario.jpg",
-    system: "nds",
-    category: "action"
+    id: "soccershootout",
+    name: "Capcom's Soccer Shootout",
+    file: "Capcom's Soccer Shootout.smc",
+    color: "#e74c3c",
+    image: "topgear.jpeg",
+    system: "snes",
+    category: "sports"
   },
-  // NES Games
+  {
+    id: "dreambasket",
+    name: "Dream Basketball",
+    file: "Dream Basketball - Dunk & Hoop (J) [!].smc",
+    color: "#f39c12",
+    image: "topgear.jpeg",
+    system: "snes",
+    category: "sports"
+  },
+  {
+    id: "emmitt",
+    name: "Emmitt Smith Football",
+    file: "Emmitt Smith Football (U) [!].smc",
+    color: "#e74c3c",
+    image: "topgear.jpeg",
+    system: "snes",
+    category: "sports"
+  },
+  {
+    id: "jleague94",
+    name: "J.League Excite Stage '94",
+    file: "J.League Excite Stage '94 (J) (V1.1) [!].smc",
+    color: "#9b59b6",
+    image: "topgear.jpeg",
+    system: "snes",
+    category: "sports"
+  },
+  {
+    id: "jleague2",
+    name: "J.League Soccer Prime Goal 2",
+    file: "J.League Soccer Prime Goal 2 (J) [!].smc",
+    color: "#3498db",
+    image: "topgear.jpeg",
+    system: "snes",
+    category: "sports"
+  },
+  {
+    id: "nbalive",
+    name: "NBA Live '96",
+    file: "NBA Live '96 (U) [!].smc",
+    color: "#e74c3c",
+    image: "topgear.jpeg",
+    system: "snes",
+    category: "sports"
+  },
+  {
+    id: "super dunk",
+    name: "Super Dunk Star",
+    file: "Super Dunk Star (J).smc",
+    color: "#f39c12",
+    image: "topgear.jpeg",
+    system: "snes",
+    category: "sports"
+  },
+  {
+    id: "soccer2",
+    name: "Super Formation Soccer II",
+    file: "Super Formation Soccer II (J) [!].smc",
+    color: "#27ae60",
+    image: "topgear.jpeg",
+    system: "snes",
+    category: "sports"
+  },
+  {
+    id: "golf",
+    name: "Golf Daisuki!",
+    file: "Golf Daisuki! O.B. Club (Japan) (BS).sfc",
+    color: "#27ae60",
+    image: "topgear.jpeg",
+    system: "snes",
+    category: "sports"
+  },
+  
+  // RPG Games
+  {
+    id: "7",
+    name: "Pokemon FireRed",
+    file: "Pokemon.gba",
+    color: "#e74c3c",
+    image: "spiderman2.jpeg",
+    system: "gba",
+    category: "rpg"
+  },
+  {
+    id: "earthbound",
+    name: "EarthBound",
+    file: "EarthBound (Regal).sfc",
+    color: "#27ae60",
+    image: "spiderman2.jpeg",
+    system: "snes",
+    category: "rpg"
+  },
+  {
+    id: "bastard",
+    name: "Bastard!!",
+    file: "Bastard!! - Ankoku no Hakai-shin.smc",
+    color: "#9b59b6",
+    image: "spiderman2.jpeg",
+    system: "snes",
+    category: "rpg"
+  },
+  {
+    id: "juteisenki",
+    name: "Jutei Senki",
+    file: "Jutei Senki (J) [T+Eng1.00_AGTP].smc",
+    color: "#f39c12",
+    image: "spiderman2.jpeg",
+    system: "snes",
+    category: "rpg"
+  },
+  {
+    id: "kouryuumimi",
+    name: "Kouryuu no Mimi",
+    file: "Kouryuu no Mimi (J) [T+Eng 100% V1 RPGONE].smc",
+    color: "#3498db",
+    image: "spiderman2.jpeg",
+    system: "snes",
+    category: "rpg"
+  },
+  {
+    id: "super genjin",
+    name: "Super Genjin",
+    file: "Super Genjin.smc",
+    color: "#e74c3c",
+    image: "spiderman2.jpeg",
+    system: "snes",
+    category: "rpg"
+  },
+  
+  // Fighting Games
+  {
+    id: "4",
+    name: "Street Fighter Two",
+    file: "Street Fighter Two .smc",
+    color: "#e74c3c",
+    image: "Street Fighter Two.jpg",
+    system: "snes",
+    category: "fighting"
+  },
+  {
+    id: "ggundam",
+    name: "Kidou Butouden G-Gundam",
+    file: "Kidou Butouden G-Gundam (J) [T+Eng1.00_AGTP].smc",
+    color: "#f39c12",
+    image: "Street Fighter Two.jpg",
+    system: "snes",
+    category: "fighting"
+  },
+  
+  // Adventure Games
   {
     id: "10",
     name: "Home Alone 2",
@@ -236,58 +392,98 @@ const GAMES = [
     category: "adventure"
   },
   {
-    id: "nes1",
-    name: "Super Mario Bros",
-    file: "Home Alone 2.nes",
-    color: "#e74c3c",
-    image: "home-alone-2.jpg",
-    system: "nes",
-    category: "action"
-  },
-  {
-    id: "nes2",
-    name: "Contra",
-    file: "Home Alone 2.nes",
-    color: "#e74c3c",
-    image: "home-alone-2.jpg",
-    system: "nes",
-    category: "action"
-  },
-  {
-    id: "nes3",
-    name: "Tecmo Bowl",
-    file: "Home Alone 2.nes",
-    color: "#f39c12",
-    image: "home-alone-2.jpg",
-    system: "nes",
-    category: "sports"
-  },
-  {
-    id: "nes4",
-    name: "Castlevania",
-    file: "Home Alone 2.nes",
+    id: "maruquest",
+    name: "Maru's Quest",
+    file: "Maru's Quest (Prototype).SFC",
     color: "#9b59b6",
     image: "home-alone-2.jpg",
-    system: "nes",
-    category: "action"
+    system: "snes",
+    category: "adventure"
   },
   {
-    id: "nes5",
-    name: "Mega Man",
-    file: "Home Alone 2.nes",
+    id: "marvelous",
+    name: "Marvelous",
+    file: "Marvelous - Mouhitotsu no Takarajima (Japan).sfc",
     color: "#3498db",
     image: "home-alone-2.jpg",
-    system: "nes",
+    system: "snes",
+    category: "adventure"
+  },
+  {
+    id: "matsumura",
+    name: "Matsumura Kunihiro Den",
+    file: "Matsumura Kunihiro Den - Saikyou no Rekishi o Nurikaero! (Japan).sfc",
+    color: "#e74c3c",
+    image: "home-alone-2.jpg",
+    system: "snes",
+    category: "adventure"
+  },
+  {
+    id: "mickmac",
+    name: "Mick and Mack",
+    file: "Mick and Mack - Global Gladiators (Sabotage hack).sfc",
+    color: "#f39c12",
+    image: "home-alone-2.jpg",
+    system: "snes",
+    category: "adventure"
+  },
+  {
+    id: "sylvester",
+    name: "Sylvester and Tweety",
+    file: "Sylvester and Tweety.sfc",
+    color: "#27ae60",
+    image: "home-alone-2.jpg",
+    system: "snes",
+    category: "adventure"
+  },
+  {
+    id: "carrier",
+    name: "Carrier Aces",
+    file: "Carrier Aces (U) [!].smc",
+    color: "#3498db",
+    image: "home-alone-2.jpg",
+    system: "snes",
+    category: "adventure"
+  },
+  {
+    id: "sos",
+    name: "SOS",
+    file: "SOS (U) [!].smc",
+    color: "#9b59b6",
+    image: "home-alone-2.jpg",
+    system: "snes",
+    category: "adventure"
+  },
+  
+  // Horror Games
+  {
+    id: "bramdrac",
+    name: "Bram Stoker's Dracula",
+    file: "Bram Stoker's Dracula.smc",
+    color: "#8b0000",
+    image: "spiderman1.jpeg",
+    system: "snes",
+    category: "horror"
+  },
+  
+  // Puzzle Games
+  {
+    id: "familyfeud",
+    name: "Family Feud",
+    file: "Family Feud (U) (V1.0) [!].smc",
+    color: "#3498db",
+    image: "mario.jpg",
+    system: "snes",
     category: "action"
   },
   {
-    id: "nes6",
-    name: "Excitebike",
-    file: "Home Alone 2.nes",
-    color: "#e74c3c",
-    image: "home-alone-2.jpg",
-    system: "nes",
-    category: "racing"
+    id: "mrdo",
+    name: "Mr. Do!",
+    file: "Mr. Do! (U) [!].smc",
+    color: "#f39c12",
+    image: "mario.jpg",
+    system: "snes",
+    category: "action"
   }
 ];
 
@@ -472,7 +668,7 @@ function Emulator() {
           {/* JioHotstar-style category sections */}
           <div className="category-sections">
             {CATEGORY_SECTIONS.map((section) => {
-              const sectionGames = GAMES.filter(game => game.system === section.id);
+              const sectionGames = GAMES.filter(game => game.category === section.id);
               if (sectionGames.length === 0) return null;
               
               return (

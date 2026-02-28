@@ -5,13 +5,11 @@ import "../css/Navbar.css";
 const CATEGORIES = [
     { id: "action", name: "Action", path: "/category/action" },
     { id: "racing", name: "Racing", path: "/category/racing" },
-    { id: "fighting", name: "Fighting", path: "/category/fighting" },
+    { id: "sports", name: "Sports", path: "/category/sports" },
     { id: "rpg", name: "RPG", path: "/category/rpg" },
+    { id: "fighting", name: "Fighting", path: "/category/fighting" },
     { id: "adventure", name: "Adventure", path: "/category/adventure" },
-    { id: "snes", name: "SNES", path: "/category/snes" },
-    { id: "gba", name: "GBA", path: "/category/gba" },
-    { id: "nds", name: "NDS", path: "/category/nds" },
-    { id: "nes", name: "NES", path: "/category/nes" }
+    { id: "horror", name: "Horror", path: "/category/horror" }
 ];
 
 function Navbar() {
