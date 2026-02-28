@@ -25,7 +25,14 @@ const GAMES = [
     file: "Top Gear (USA).sfc",
     color: "#3498db",
     image : "topgear.jpeg"
-  }
+  },
+  {
+    id: "street-fighter-2",
+    name: "Street Fighter Two",
+    file: "Street Fighter Two .smc",
+    color: "#e74c3c",
+    image: null
+  },
 ];
 
 // Controls
@@ -139,7 +146,7 @@ function Emulator() {
             <div className="game-preview">
               {selectedGame.image ? (
                 <img 
-                  src={`/game-images/${selectedGame.image}`} 
+                  src={`/game-image/${selectedGame.image}`} 
                   alt={selectedGame.name}
                   className="preview-image"
                 />
