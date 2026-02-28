@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
-import GameCard from "./GameCard";
+import GameCard from "../GameCard/GameCard";
 
 import "../css/GameCard.css";
 import "../css/Emulator.css";
@@ -79,7 +79,17 @@ const GAMES = [
     system: "gba",
     category: "rpg"
   },
+  {
+    id: "8",
+    name: "Super Mario",
+    file: "New Super Mario Bros.nds",
+    color: "#e74c3c",
+    image: "new-mario.jpg",
+    system: "nds",
+    category: "action"
+  },
 ];
+
 
 // Controls
 const CONTROLS = [

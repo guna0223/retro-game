@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import GameCard from "../Emulator/GameCard";
+import GameCard from "../GameCard/GameCard";
 import "../css/GameCard.css";
 import "../css/Emulator.css";
 
