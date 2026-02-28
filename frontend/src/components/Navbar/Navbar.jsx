@@ -40,7 +40,7 @@ function Navbar() {
                     </Link>
                     
                     <button className="nav-link category-btn" onClick={toggleCategories}>
-                        Category
+                        Category <i className={`fas fa-chevron-${showCategories ? 'up' : 'down'}`}></i>
                     </button>
                     
                     <Link to="/about" className="nav-link">
@@ -72,7 +72,7 @@ function Navbar() {
                         className="search-input"
                     />
                     <button type="submit" className="search-btn">
-                        🔍
+                        <i className="fas fa-search"></i>
                     </button>
                 </form>
             </div>

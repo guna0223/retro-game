@@ -24,7 +24,7 @@ function GameCard({ game, onPlay }) {
           <div className="no-image"></div>
         )}
         <div className="card-overlay">
-          <span className="play-text">PLAY</span>
+          <span className="play-text"><i className="fas fa-play"></i> PLAY</span>
         </div>
       </div>
       <div className="card-info">

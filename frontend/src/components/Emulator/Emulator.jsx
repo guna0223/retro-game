@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import GameCard from "./GameCard";
 
 import "../css/GameCard.css";
@@ -95,6 +95,46 @@ function Emulator() {
   const [gameStarted, setGameStarted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Keyboard controls handler
+  useEffect(() => {
+    if (!gameStarted) return;
+
+    const handleKeyDown = (e) => {
+      // Prevent default for game keys to avoid browser shortcuts
+      const gameKeys = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'z', 'Z', 'x', 'X', 'Enter', 'Shift', ' '];
+      if (gameKeys.includes(e.key)) {
+        e.preventDefault();
+      }
+      
+      // Dispatch to emulator if available
+      if (window.EJS && window.EJS.emulator) {
+        try {
+          window.EJS.emulator.keyboard.keydown(e);
+        } catch (err) {
+          console.log('Key down error:', err);
+        }
+      }
+    };
+
+    const handleKeyUp = (e) => {
+      if (window.EJS && window.EJS.emulator) {
+        try {
+          window.EJS.emulator.keyboard.keyup(e);
+        } catch (err) {
+          console.log('Key up error:', err);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
+    };
+  }, [gameStarted]);
+
   // Select a game (show preview)
   const selectGame = useCallback((game) => {
     setSelectedGame(game);
@@ -116,6 +156,10 @@ function Emulator() {
     window.EJS_core = emulatorCore;
     window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
     window.EJS_gameUrl = `/games/${selectedGame.file}`;
+    
+    // Enable keyboard controls
+    window.EJS_controls = true;
+    window.EJS_autoKeyPress = true;
 
     // Clear previous
     const gameDiv = document.getElementById("game");
@@ -137,6 +181,12 @@ function Emulator() {
 
     script.onload = () => {
       setIsLoading(false);
+      // Focus the game container for keyboard input
+      const gameContainer = document.getElementById("game");
+      if (gameContainer) {
+        gameContainer.setAttribute('tabindex', '0');
+        gameContainer.focus();
+      }
     };
 
     script.onerror = () => {
@@ -206,7 +256,7 @@ function Emulator() {
         <div className="arcade-bg"></div>
 
         <div className="game-library">
-          <h2 className="library-title">RETRO ARCADE</h2>
+          <h2 className="library-title"><i className="fas fa-gamepad"></i> RETRO ARCADE</h2>
 
           <div className="game-grid">
             {GAMES.map((game) => (
@@ -228,7 +278,7 @@ function Emulator() {
       <div className="arcade-bg"></div>
 
       <button className="back-btn" onClick={goBack}>
-        ← Back to Games
+        <i className="fas fa-arrow-left"></i> Back to Games
       </button>
 
       <div className="emulator-area">
@@ -248,7 +298,7 @@ function Emulator() {
                 </div>
               )}
               <button className="start-btn" onClick={startGame}>
-                START GAME
+                <i className="fas fa-play"></i> START GAME
               </button>
             </div>
           )}
@@ -267,7 +317,7 @@ function Emulator() {
       </div>
 
       <div className="controls-panel">
-        <h3 className="controls-title">CONTROLS</h3>
+        <h3 className="controls-title"><i className="fas fa-gamepad"></i> CONTROLS</h3>
         <div className="controls-grid">
           {CONTROLS.map((control, i) => (
             <div key={i} className="control-row">
