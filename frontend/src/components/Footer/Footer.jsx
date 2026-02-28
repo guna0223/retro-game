@@ -6,7 +6,7 @@ function Footer() {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-section">
-          <h3 className="footer-title">Retro SNES Arcade</h3>
+          <h3 className="footer-title">Retro Game Vault</h3>
           <p className="footer-text">
             Your ultimate destination for classic retro gaming.
           </p>
@@ -35,7 +35,7 @@ function Footer() {
       </div>
       
       <div className="footer-bottom">
-        <p>&copy; 2024 Retro SNES Arcade. All rights reserved.</p>
+        <p>&copy; 2024 Retro Game Vault. All rights reserved.</p>
       </div>
     </footer>
   );

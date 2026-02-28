@@ -1,35 +1,62 @@
 import { Link } from "react-router-dom";
-import "../css/GameCard.css";
-import "../css/Emulator.css";
+import "../css/About.css";
 
 function About() {
   return (
     <div className="arcade-container">
       <div className="arcade-bg"></div>
 
-      <div className="game-library">
-        <h2 className="library-title">About Us</h2>
+      <div className="about-page">
+        <h2 className="about-title">About Retro Game Vault</h2>
 
-        <div className="about-content">
+        <section className="about-section">
+          <h3 className="section-title">Project Introduction</h3>
           <p className="about-text">
-            Welcome to Retro SNES Arcade - your ultimate destination for classic gaming! 
-            We bring you the best retro games from the golden era of gaming.
+            Retro Game Vault is a browser-based retro gaming platform that allows users 
+            to explore and play classic console games directly online. The project is 
+            designed as a retro-style arcade library showcasing nostalgic games through 
+            modern web technologies.
           </p>
-          
+        </section>
+
+        <section className="about-section">
+          <h3 className="section-title">Technology Stack</h3>
+          <ul className="tech-list">
+            <li>React.js</li>
+            <li>JavaScript</li>
+            <li>EmulatorJS</li>
+            <li>CSS3</li>
+          </ul>
+        </section>
+
+        <section className="about-section">
+          <h3 className="section-title">Credits</h3>
+          <div className="credit-item">
+            <strong>Emulator Engine:</strong>
+            <p>EmulatorJS - Used to run classic console games directly in the browser.</p>
+          </div>
+          <div className="credit-item">
+            <strong>Game ROMs:</strong>
+            <p>ROM files are used for educational and preservation purposes. Users should only play games they legally own.</p>
+          </div>
+          <div className="credit-item">
+            <strong>Game Artwork / Cover Images:</strong>
+            <p>Game images and artwork belong to their respective copyright owners.</p>
+          </div>
+        </section>
+
+        <section className="about-section disclaimer">
+          <h3 className="section-title">Disclaimer</h3>
           <p className="about-text">
-            Play legendary titles like Super Mario World, Donkey Kong Country, 
-            Street Fighter, Pokemon, and many more - all in your browser!
+            This website is a personal project created for learning and demonstration purposes. 
+            All game trademarks, ROMs, and artwork belong to their respective owners. 
+            Users should only play ROMs they legally own.
           </p>
-          
-          <p className="about-text">
-            Our emulator supports SNES and GBA games with full controls compatibility.
-            Simply select a game and start playing instantly.
-          </p>
-          
-          <Link to="/" className="back-link">
-            ← Back to Games
-          </Link>
-        </div>
+        </section>
+
+        <Link to="/" className="back-link">
+          ← Back to Games
+        </Link>
       </div>
     </div>
   );

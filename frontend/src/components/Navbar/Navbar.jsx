@@ -31,7 +31,7 @@ function Navbar() {
         <nav className="navbar">
             <div className="navbar-container">
                 <Link to="/" className="navbar-logo">
-                    Retro SNES Arcade
+                    Retro Game Vault
                 </Link>
 
                 <div className="navbar-links">

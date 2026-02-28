@@ -1,0 +1,134 @@
+/* About Page Styles */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+.about-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.about-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.8rem;
+  color: #FFD700;
+  text-shadow: 0 0 15px #FFD700;
+  text-align: center;
+  margin-bottom: 40px;
+  letter-spacing: 4px;
+}
+
+.about-section {
+  background: #141A2E;
+  border: 2px solid #7C3AED;
+  border-radius: 16px;
+  padding: 25px;
+  margin-bottom: 25px;
+}
+
+.about-section.disclaimer {
+  border-color: #00E5FF;
+  background: linear-gradient(180deg, #141A2E 0%, #0a0f1a 100%);
+}
+
+.section-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.9rem;
+  color: #00E5FF;
+  text-shadow: 0 0 10px #00E5FF;
+  margin-bottom: 20px;
+}
+
+.about-text {
+  font-family: 'VT323', monospace;
+  font-size: 1.3rem;
+  color: #FFFFFF;
+  line-height: 1.8;
+}
+
+.tech-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.tech-list li {
+  font-family: 'VT323', monospace;
+  font-size: 1.3rem;
+  color: #FFFFFF;
+  background: #7C3AED;
+  padding: 8px 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(124, 58, 237, 0.4);
+}
+
+.credit-item {
+  margin-bottom: 20px;
+}
+
+.credit-item:last-child {
+  margin-bottom: 0;
+}
+
+.credit-item strong {
+  font-family: 'VT323', monospace;
+  font-size: 1.3rem;
+  color: #FFD700;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.credit-item p {
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  color: #CCCCCC;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.back-link {
+  display: inline-block;
+  font-family: 'VT323', monospace;
+  font-size: 1.3rem;
+  color: #00E5FF;
+  text-decoration: none;
+  padding: 12px 28px;
+  border: 2px solid #00E5FF;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.back-link:hover {
+  background: rgba(0, 229, 255, 0.1);
+  color: #7C3AED;
+  border-color: #7C3AED;
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .about-title {
+    font-size: 1.2rem;
+  }
+  
+  .section-title {
+    font-size: 0.75rem;
+  }
+  
+  .about-text {
+    font-size: 1.1rem;
+  }
+  
+  .tech-list li {
+    font-size: 1.1rem;
+    padding: 6px 14px;
+  }
+  
+  .credit-item strong,
+  .credit-item p {
+    font-size: 1.1rem;
+  }
+}
