@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import GameCard from "./GameCard";
+import Footer from "../Footer/Footer";
 import "../css/GameCard.css";
 import "../css/Emulator.css";
 
@@ -217,6 +218,8 @@ function Emulator() {
             ))}
           </div>
         </div>
+
+        <Footer />
       </div>
     );
   }
