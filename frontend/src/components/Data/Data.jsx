@@ -337,7 +337,7 @@ export const GAMES = [
     name: "Pokemon FireRed",
     file: "Pokemon.gba",
     color: "#e74c3c",
-    image: "spiderman2.jpeg",
+    image: null,
     system: "gba",
     category: "rpg"
   },
@@ -346,7 +346,7 @@ export const GAMES = [
     name: "EarthBound",
     file: "EarthBound (Regal).sfc",
     color: "#27ae60",
-    image: null,
+    image: "Dragon Quest V (Official Asset Artwork).jpeg",
     system: "snes",
     category: "rpg"
   },
@@ -680,7 +680,7 @@ export const GAMES = [
     name: "F-Zero",
     file: "F-Zero (Sup Zero).sfc",
     color: "#3498db",
-    image: null,
+    image: "1080° Avalanche (Official Asset Artwork).jpg",
     system: "snes",
     category: "racing"
   },
@@ -698,7 +698,7 @@ export const GAMES = [
     name: "Final Fantasy II",
     file: "Final Fantasy II(Darkness Within).smc",
     color: "#9b59b6",
-    image: null,
+    image: "Dragon Quest III (Super Famicom Version - Official Asset Artwork).jpeg",
     system: "snes",
     category: "rpg"
   },
@@ -707,7 +707,7 @@ export const GAMES = [
     name: "Final Fantasy IV",
     file: "Final Fantasy IV - Ultima (v25k plus).sfc",
     color: "#9b59b6",
-    image: null,
+    image: "Dragon Quest IV (Official Asset Artwork).jpeg",
     system: "snes",
     category: "rpg"
   },
@@ -716,7 +716,7 @@ export const GAMES = [
     name: "Final Fight",
     file: "Final Fight (U) [!].smc",
     color: "#e74c3c",
-    image: null,
+    image: "Street Fighter (Official Asset Artwork).jpg",
     system: "snes",
     category: "fighting"
   },
@@ -1069,7 +1069,7 @@ export const GAMES = [
     name: "Contra 3",
     file: "Contra 3 - The Alien Wars (U) [!].smc",
     color: "#e74c3c",
-    image: null,
+    image: "Neo Contra (Official Asset Artwork).jpg",
     system: "snes",
     category: "action"
   },
@@ -1078,7 +1078,7 @@ export const GAMES = [
     name: "Mega Man X",
     file: "Mega Man X (U) [!].smc",
     color: "#3498db",
-    image: null,
+    image: "Mega Man X (Official Asset Artwork).jpeg",
     system: "snes",
     category: "action"
   },
@@ -1087,7 +1087,7 @@ export const GAMES = [
     name: "Super Metroid",
     file: "Super Metroid (U) [!].smc",
     color: "#9b59b6",
-    image: null,
+    image: "Castlevania - Dawn of Sorrow (Official Asset Artwork).jpg",
     system: "snes",
     category: "action"
   },
@@ -1096,7 +1096,7 @@ export const GAMES = [
     name: "Donkey Kong Country 2",
     file: "Donkey Kong Country 2 - Diddy's Kong Quest (U) [!].smc",
     color: "#f39c12",
-    image: null,
+    image: "monkey.jpg",
     system: "snes",
     category: "action"
   },
@@ -1105,7 +1105,7 @@ export const GAMES = [
     name: "Donkey Kong Country 3",
     file: "Donkey Kong Country 3 - Dixie Kong's Double Trouble! (U) [!].smc",
     color: "#f39c12",
-    image: null,
+    image: "monkey.jpg",
     system: "snes",
     category: "action"
   },
@@ -1123,7 +1123,7 @@ export const GAMES = [
     name: "Street Fighter Alpha 2",
     file: "Street Fighter Alpha 2 (U) [!].smc",
     color: "#e74c3c",
-    image: null,
+    image: "Street Fighter (Official Asset Artwork).jpg",
     system: "snes",
     category: "fighting"
   },
@@ -1132,7 +1132,7 @@ export const GAMES = [
     name: "Mortal Kombat 3",
     file: "Mortal Kombat 3 (U) [!].smc",
     color: "#8b0000",
-    image: null,
+    image: "Mortal Kombat II (Official Asset Artwork).jpg",
     system: "snes",
     category: "fighting"
   },
@@ -1141,7 +1141,7 @@ export const GAMES = [
     name: "Mortal Kombat",
     file: "Mortal Kombat (U) [!].smc",
     color: "#8b0000",
-    image: null,
+    image: "Mortal Kombat II (Official Asset Artwork).jpg",
     system: "snes",
     category: "fighting"
   },
@@ -1150,7 +1150,7 @@ export const GAMES = [
     name: "Mortal Kombat 2",
     file: "Mortal Kombat 2 (U) [!].smc",
     color: "#8b0000",
-    image: null,
+    image: "Mortal Kombat II (Official Asset Artwork).jpg",
     system: "snes",
     category: "fighting"
   },
@@ -1168,7 +1168,7 @@ export const GAMES = [
     name: "Tetris",
     file: "Tetris (U) [!].smc",
     color: "#3498db",
-    image: null,
+    image: "Pac-Man (Atari 2600 Concept - Official Asset Artwork).jpeg",
     system: "snes",
     category: "puzzle"
   },
@@ -1195,7 +1195,7 @@ export const GAMES = [
     name: "Yoshi's Island",
     file: "Super Mario World 2 - Yoshi's Island (U) [!].smc",
     color: "#27ae60",
-    image: null,
+    image: "mario.jpg",
     system: "snes",
     category: "action"
   },
@@ -1301,3 +1301,4 @@ export const GAMES = [
 ];
 
 export default { GAMES, CATEGORIES, CATEGORY_SECTIONS, CATEGORIES_INFO, NAVBAR_CATEGORIES };
+
