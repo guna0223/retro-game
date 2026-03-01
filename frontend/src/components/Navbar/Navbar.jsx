@@ -6,6 +6,7 @@ import "../css/Navbar.css";
 function Navbar() {
     const [searchQuery, setSearchQuery] = useState("");
     const [showCategories, setShowCategories] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const navigate = useNavigate();
 
     const handleSearch = (e) => {
@@ -20,15 +21,28 @@ function Navbar() {
         setShowCategories(!showCategories);
     };
 
+    const toggleMobileMenu = () => {
+        setMobileMenuOpen(!mobileMenuOpen);
+    };
+
+    const closeMobileMenu = () => {
+        setMobileMenuOpen(false);
+        setShowCategories(false);
+    };
+
     return (
         <nav className="navbar">
             <div className="navbar-container">
-                <Link to="/" className="navbar-logo">
+                <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
                     Retro Game Vault
                 </Link>
 
-                <div className="navbar-links">
-                    <Link to="/" className="nav-link">
+                <button className="mobile-menu-toggle" onClick={toggleMobileMenu} aria-label="Toggle menu">
+                    <i className={`fas fa-${mobileMenuOpen ? 'times' : 'bars'}`}></i>
+                </button>
+
+                <div className={`navbar-links ${mobileMenuOpen ? 'open' : ''}`}>
+                    <Link to="/" className="nav-link" onClick={closeMobileMenu}>
                         Home
                     </Link>
                     
@@ -36,7 +50,7 @@ function Navbar() {
                         Category <i className={`fas fa-chevron-${showCategories ? 'up' : 'down'}`}></i>
                     </button>
                     
-                    <Link to="/about" className="nav-link">
+                    <Link to="/about" className="nav-link" onClick={closeMobileMenu}>
                         About
                     </Link>
                 </div>
@@ -48,7 +62,7 @@ function Navbar() {
                                 key={category.id}
                                 to={category.path}
                                 className="category-item"
-                                onClick={() => setShowCategories(false)}
+                                onClick={closeMobileMenu}
                             >
                                 {category.name}
                             </Link>

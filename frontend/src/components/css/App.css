@@ -73,9 +73,20 @@ body {
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .app-main {
+    padding-top: 100px;
+  }
+}
+
 @media (max-width: 768px) {
   .app-main {
-    padding-top: 140px;
+    padding-top: 120px;
+    padding-bottom: 30px;
+  }
+  
+  .no-results {
+    padding: 60px 15px;
   }
   
   .no-results p {
@@ -90,6 +101,26 @@ body {
 
 @media (max-width: 480px) {
   .app-main {
-    padding-top: 130px;
+    padding-top: 110px;
+    padding-bottom: 25px;
+  }
+  
+  .no-results {
+    padding: 50px 12px;
+  }
+  
+  .no-results::before {
+    font-size: 3rem;
+  }
+  
+  .no-results p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+  }
+  
+  .back-link {
+    font-size: 1rem;
+    padding: 8px 20px;
+    border-radius: 25px;
   }
 }
