@@ -20,7 +20,7 @@ const TOUCH_CONTROLS = [
   { key: "ArrowDown", label: "↓" },
   { key: "ArrowLeft", label: "←" },
   { key: "ArrowRight", label: "→" },
-  { key: "z", label: "A" },
+  { key: "z", label: "A" },  
   { key: "x", label: "B" },
   { key: "Enter", label: "START" },
   { key: "Shift", label: "SELECT" }

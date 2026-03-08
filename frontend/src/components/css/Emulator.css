@@ -202,7 +202,7 @@
 .emulator-screen {
   position: relative;
   width: 100%;
-  max-width: 650px;
+  max-width: 900px;
   aspect-ratio: 4/3;
   border-radius: 16px;
   overflow: hidden;
@@ -246,7 +246,7 @@
 
 .emulator-game canvas {
   width: 100% !important;
-  height: 100px !important;
+  height: 100% !important;
 }
 
 /* Game Preview */
@@ -695,7 +695,7 @@
 /* Large Desktop */
 @media (min-width: 1400px) {
   .emulator-screen {
-    max-width: 750px;
+    max-width: 1000px;
   }
 
   .controls-panel {
@@ -709,7 +709,7 @@
 
 @media (min-width: 1600px) {
   .emulator-screen {
-    max-width: 800px;
+    max-width: 1100px;
   }
 
   .controls-panel {
