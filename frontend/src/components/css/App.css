@@ -1,126 +1,65 @@
-/* App.css - Retro Arcade Theme */
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  background: #0B0F1A;
-  color: #FFFFFF;
-  font-family: 'VT323', monospace;
-  overflow-x: hidden;
-}
+/* ═══════════════════════════════════════════
+   App.css — Shell Layout
+═══════════════════════════════════════════ */
 
 .app-container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: #0B0F1A;
-}
-
-.app-header {
-  display: none;
-}
-
-.app-main {
-  flex: 1;
-  padding-top: 90px;
-  padding-bottom: 40px;
-}
-
-/* No Results */
-.no-results {
-  text-align: center;
-  padding: 80px 20px;
+  background: transparent;
   position: relative;
 }
 
-.no-results::before {
-  content: '🔍';
-  font-size: 4rem;
-  display: block;
-  margin-bottom: 20px;
-  opacity: 0.5;
+.app-header { display: none; }
+
+.app-main {
+  flex: 1;
+  padding-top: var(--navbar-h);
+  overflow-y: auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── No Results ── */
+.no-results {
+  text-align: center;
+  padding: 100px 20px;
+  animation: fadeInUp 0.6s var(--ease-out-expo);
 }
 
 .no-results p {
-  font-family: 'VT323', monospace;
-  font-size: 1.6rem;
-  color: #888;
-  margin-bottom: 40px;
-}
-
-.back-link {
-  display: inline-block;
-  font-family: 'VT323', monospace;
+  font-family: var(--font-body);
   font-size: 1.4rem;
-  color: #00E5FF;
-  text-decoration: none;
-  padding: 12px 28px;
-  border: 2px solid #00E5FF;
-  border-radius: 30px;
-  transition: all 0.3s ease;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  letter-spacing: 0.03em;
 }
 
-.back-link:hover {
-  background: rgba(0, 229, 255, 0.1);
-  color: #7C3AED;
-  border-color: #7C3AED;
-  box-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+.no-results .back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--neon-cyan);
+  padding: 14px 36px;
+  border: 1px solid rgba(0,240,255,0.4);
+  border-radius: var(--radius-md);
+  background: rgba(0,240,255,0.06);
+  transition: all 0.3s var(--ease-out-expo);
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-  .app-main {
-    padding-top: 100px;
-  }
+.no-results .back-link:hover {
+  background: rgba(0,240,255,0.15);
+  box-shadow: var(--glow-cyan);
+  color: var(--text-bright);
+  transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
-  .app-main {
-    padding-top: 120px;
-    padding-bottom: 30px;
-  }
-  
-  .no-results {
-    padding: 60px 15px;
-  }
-  
-  .no-results p {
-    font-size: 1.3rem;
-  }
-  
-  .back-link {
-    font-size: 1.2rem;
-    padding: 10px 24px;
-  }
-}
-
-@media (max-width: 480px) {
-  .app-main {
-    padding-top: 110px;
-    padding-bottom: 25px;
-  }
-  
-  .no-results {
-    padding: 50px 12px;
-  }
-  
-  .no-results::before {
-    font-size: 3rem;
-  }
-  
-  .no-results p {
-    font-size: 1.1rem;
-    margin-bottom: 30px;
-  }
-  
-  .back-link {
-    font-size: 1rem;
-    padding: 8px 20px;
-    border-radius: 25px;
-  }
+  .app-main { padding-top: var(--navbar-h); }
 }

@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import GameCard from "../GameCard/GameCard";
 import { GAMES, CATEGORY_SECTIONS } from "../Data/Data";
 
@@ -32,6 +33,8 @@ function Emulator() {
   const [isLoading, setIsLoading] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [showRotationMessage, setShowRotationMessage] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   // Check if device is mobile
   useEffect(() => {
@@ -184,7 +187,11 @@ function Emulator() {
   const goBack = useCallback(() => {
     // Exit landscape orientation
     if (screen.orientation && screen.orientation.unlock) {
-      screen.orientation.unlock().catch(() => {});
+      try {
+        screen.orientation.unlock();
+      } catch (e) {
+        console.log("Orientation unlock error:", e);
+      }
     }
 
     // Find and remove all audio elements created by the emulator
@@ -237,6 +244,13 @@ function Emulator() {
     setSelectedGame(null);
     setGameStarted(false);
   }, []);
+
+  // Reset state when navigating to home (e.g., clicking home link in navbar)
+  useEffect(() => {
+    if (location.pathname === '/' && location.state?.reset) {
+      goBack();
+    }
+  }, [location.pathname, location.state, goBack]);
 
   // Show game selection grid with JioHotstar-style category sections
   if (!selectedGame) {

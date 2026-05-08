@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { NAVBAR_CATEGORIES } from "../Data/Data";
 import "../css/Navbar.css";
 
@@ -8,6 +8,7 @@ function Navbar() {
     const [showCategories, setShowCategories] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
 
     const handleSearch = (e) => {
         e.preventDefault();
@@ -30,10 +31,20 @@ function Navbar() {
         setShowCategories(false);
     };
 
+    // Handle home navigation - force reset if already on home page
+    const handleHomeClick = (e) => {
+        closeMobileMenu();
+        if (location.pathname === '/') {
+            e.preventDefault();
+            // Force a re-render by navigating with a state flag
+            navigate('/', { state: { reset: Date.now() }, replace: true });
+        }
+    };
+
     return (
         <nav className="navbar">
             <div className="navbar-container">
-                <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+                <Link to="/" className="navbar-logo" onClick={handleHomeClick}>
                     Retro Game Vault
                 </Link>
 
@@ -42,7 +53,7 @@ function Navbar() {
                 </button>
 
                 <div className={`navbar-links ${mobileMenuOpen ? 'open' : ''}`}>
-                    <Link to="/" className="nav-link" onClick={closeMobileMenu}>
+                    <Link to="/" className="nav-link" onClick={handleHomeClick}>
                         Home
                     </Link>
                     

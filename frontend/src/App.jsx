@@ -11,6 +11,7 @@ function App() {
   return (
     <Router>
       <div className="app-container">
+        <div className="particles-bg" aria-hidden="true"></div>
         <Navbar />
         <main className="app-main">
           <Routes>
