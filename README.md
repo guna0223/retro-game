@@ -218,6 +218,6 @@ ROM files are not included with this project. Please ensure:
 2. You have the legal right to download and use ROM files in your jurisdiction
 3. You comply with all applicable copyright laws
 
----
+
 
 **Enjoy your retro gaming experience!** 🎮
